@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://3.127.133.6:8072/api/',
+  baseUrl: 'http://3.123.62.124:8072/api/',
 
   clientId: '362829290794-91601oi5pvqjoclq9u6eu7lvp04m620u.apps.googleusercontent.com',
 
