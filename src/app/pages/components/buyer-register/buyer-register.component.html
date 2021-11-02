@@ -1,0 +1,211 @@
+<mat-tab-group animationDuration="800ms">
+  <mat-tab label="Login" focusChange>
+    <ng-template matTabContent>
+      <div class="signup-dialog">
+        <h3 mat-dialog-title align="center" class="mt-4">Login with your social network :</h3>
+
+        <div class="row" mat-dialog-title>
+          <img
+            class="offset-4"
+            src="assets/img/icons/facebook-circular.png"
+            height="40px"
+            width="40px"
+            alt="vaanah facebook signin"
+            (click)="signInWithFB()"
+          />
+          <img
+            class="offset-1"
+            src="assets/img/icons/google.png"
+            height="45px"
+            width="45px"
+            alt="vaanah facebook signin"
+            (click)="loginWithGoogle()"
+          />
+        </div>
+
+        <span class="my-2 row">
+          <div class="col-5"><hr /></div>
+          <div class="col-2"><h3 align="center">or</h3></div>
+          <div class="col-5"><hr /></div>
+        </span>
+
+        <mat-dialog-content mat-typography>
+          <div class="dialog-form">
+            <form [formGroup]="loginForm" (submit)="login()">
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    required
+                  />
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                  />
+                </mat-form-field>
+                <span class="forgotPw"
+                  ><a mat-dialog-close routerLink="/user/reset-password" translate
+                    >registration.login.reset_password</a
+                  ></span
+                >
+              </p>
+
+              <p>
+                <button mat-flat-button color="primary">Login</button>
+              </p>
+            </form>
+          </div>
+        </mat-dialog-content>
+
+        <div class="errorMessage">
+          <span class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</span>
+        </div>
+
+        <div *ngIf="resendLink">
+          <button mat-raised-button color="primary" (click)="resend()" translate>registration.register.resend</button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab label="Register">
+    <ng-template matTabContent>
+      <div class="signup-dialog">
+        <h3 mat-dialog-title align="center" class="mt-4">Register with your social network :</h3>
+
+        <div class="row" mat-dialog-title>
+          <img
+            class="offset-4"
+            src="assets/img/icons/facebook-circular.png"
+            height="40px"
+            width="40px"
+            alt="vaanah facebook signin"
+            (click)="signInWithFB()"
+          />
+          <img
+            class="offset-1"
+            src="assets/img/icons/google.png"
+            height="45px"
+            width="45px"
+            alt="vaanah facebook signin"
+            (click)="loginWithGoogle()"
+          />
+        </div>
+
+        <span class="my-2 row">
+          <div class="col-5"><hr /></div>
+          <div class="col-2"><h3 align="center">or</h3></div>
+          <div class="col-5"><hr /></div>
+        </span>
+
+        <mat-dialog-content mat-typography>
+          <div class="dialog-form">
+            <form [formGroup]="signinForm" (submit)="signin()">
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Username</mat-label>
+                  <input
+                    matInput
+                    placeholder="username"
+                    type="text"
+                    name="username"
+                    id="username"
+                    formControlName="username"
+                    required
+                  />
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    required
+                  />
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                  />
+                </mat-form-field>
+              </p>
+
+              <p>
+                <mat-form-field appearance="outline">
+                  <mat-label>Confirm password</mat-label>
+                  <input
+                    matInput
+                    placeholder="Confirm password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password2"
+                  />
+                </mat-form-field>
+              </p>
+
+              <div *ngIf="signinForm.controls.password2.touched && signinForm.controls.password2.invalid">
+                <h4 style="color: red !important" *ngIf="signinForm.controls.password2.errors.required" translate>
+                  registration.errors.required_error
+                </h4>
+
+                <h4 style="color: red !important" *ngIf="signinForm.controls.password2.errors.mustMatch" translate>
+                  registration.errors.match_password
+                </h4>
+              </div>
+              <p>
+                <mat-checkbox (click)="openDialog()" formControlName="checked"
+                  >I have read and accept the Privacy Policy.</mat-checkbox
+                >
+              </p>
+
+              <p>
+                <!-- mat-dialog-close -->
+                <button mat-flat-button color="primary">Create an account</button>
+              </p>
+            </form>
+          </div>
+        </mat-dialog-content>
+
+        <div class="errorMessage">
+          <span class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</span>
+        </div>
+
+        <div *ngIf="resendLink">
+          <button mat-raised-button color="primary" (click)="resend()" translate>registration.register.resend</button>
+        </div>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

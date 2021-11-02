@@ -1,0 +1,139 @@
+mat-toolbar {
+  background: #004a9f;
+  color: white;
+}
+
+mat-sidenav {
+  width: 250px;
+  border-right: none;
+  background: #f39200;
+  color: white;
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+  color: lightgray;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+  height: 100%;
+  overflow-y: auto;
+}
+
+mat-sidenav-container {
+  // height: calc(100vh - 65px);
+  height: 100%;
+}
+
+element.style {
+  margin-left: 250px;
+}
+
+.mat-drawer-content {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+
+  &:hover {
+    background-color: #27274f;
+  }
+
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.active {
+  background-color: #27274f;
+}
+
+.avatar {
+  width: 195px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rigth-section {
+  padding: 20px;
+  left: -100px;
+  width: 320px;
+  height: 670px;
+  overflow-y: auto;
+  border: none;
+
+  p {
+    margin: 15px 0;
+    font: normal normal normal 16px Raleway;
+    letter-spacing: 0px;
+    color: #171832;
+    opacity: 0.6;
+    line-height: 1.8;
+  }
+}
+
+.status {
+  background-color: #00a526;
+  padding: 5px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.button {
+  background: #171832;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  color: #ffffff;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+}
+
+.init {
+  @extend .status;
+  background-color: #495057;
+}
+
+@media (max-width: 768px) {
+  .rigth-section {
+    display: none;
+  }
+}

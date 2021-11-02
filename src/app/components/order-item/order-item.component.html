@@ -1,0 +1,90 @@
+<div class="row mx-0 order" *ngIf="orderItem">
+  <mat-toolbar class="col-12">
+    <span class="col-3"><span translate>orders.order_details.order</span> #{{ order.order_items[index].number }}</span>
+    <span class="col-2">{{ order.order_items[index].created_at | date: 'dd/MM/yyyy hh:mm:ss' }}</span>
+    <span class="col-3 offset-1"
+      ><span class="ml-4"
+        ><span translate>orders.order_details.order_total</span> :
+        {{ formatPrice(order.order_items[index].total_prices | currency: 'EUR') }}</span
+      ></span
+    >
+    <span class="col-3" translate>orders.order_list.manage_order</span>
+  </mat-toolbar>
+  <div class="col-12 row mx-0 px-0 my-3" id="row1">
+    <span class="col-12 row mx-0 px-0">
+      <span class="col-1">
+        <button mat-button (click)="previous()" [disabled]="order.order_items[index - 1] === undefined">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-left"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+            />
+          </svg>
+        </button>
+      </span>
+      <h2 class="col-10">
+        <a [routerLink]="['/product-detail/' + product.id + '/1']" routerLinkActive="router-link-active">
+          {{ product.name }}</a
+        >
+      </h2>
+      <span class="col-1">
+        <button mat-button (click)="next()" [disabled]="order.order_items[index + 1] === undefined">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-right"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+            />
+          </svg>
+        </button>
+      </span>
+    </span>
+    <span class="col-3 offset-2">
+      <a routerLink="/orders/{{ order.id }}" routerLinkActive="router-link-active" translate
+        >orders.order_list.detail_button</a
+      >
+    </span>
+    <span class="col-4" translate>orders.order_list.order_shipping_info</span>
+    <span class="col-3" translate>orders.order_list.order_package_status</span>
+  </div>
+  <div class="col-12 row mx-0 px-0" id="row2">
+    <img class="col-2" [src]="product.images[0].file" alt="" />
+    <span class="col-3">
+      <span translate>orders.order_list.order_items</span> :
+      <button mat-raised-button>{{ order.order_items[index].length }}</button>
+      <button class="w-100" mat-raised-button color="primary" (click)="addToCart(product.id)">
+        <span translate>orders.order_list.order_buy_again</span>
+      </button>
+    </span>
+    <span class="col-4">
+      <ul class="list-unstyled">
+        <li>{{ user.username }}</li>
+        <li>{{ order.order_items[index].shipping_address }}</li>
+        <li>{{ order.order_items[index].shipping_method }}</li>
+        <!-- <li>
+          {{ order.shipping_address.address.state }}, {{ order.shipping_address.address.street }} -
+          {{ order.shipping_address.phone_number }}
+        </li> -->
+      </ul>
+    </span>
+    <span class="col">
+      <app-order-status [status]="order.status"></app-order-status>
+      <button class="w-100 mt-4" mat-raised-button color="accent">
+        <span translate>orders.order_list.order_tracking</span>
+      </button>
+    </span>
+  </div>
+</div>

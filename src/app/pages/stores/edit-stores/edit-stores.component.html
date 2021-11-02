@@ -1,0 +1,58 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<form [formGroup]="editStore" (ngSubmit)="onSubmit()" class="container col-sm-10 col-md-8 col-lg-6">
+  <div class="form-group">
+    <!-- Shop Name -->
+    <div class="row">
+      <div class="col-6">
+        <label for="shop-name">Shop name</label>
+        <input type="text" name="shop-name" id="" formControlName="name" class="form-control" />
+
+        <!-- <div *ngIf="submited && f.name.errors" class="text-danger">
+          <div *ngIf="f.name.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      </div>
+
+      <!-- <div class="col-6">
+        <label for="created_at">Created at</label>
+        <input disabled type="text" name="created_at" formControlName="created_at" class="form-control" /> -->
+
+      <!-- <div *ngIf="submited && f.created_at.errors" class="text-danger">
+          <div *ngIf="f.created_at.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      <!-- </div> -->
+      <!-- </div>
+
+    <div class="row mt-3"> -->
+      <!-- <div class="col-6">
+        <label for="created_by">Created by</label>
+        <input type="number" name="created_by" formControlName="created_by" class="form-control" /> -->
+
+      <!-- <div *ngIf="submited && f.created_by.errors" class="text-danger">
+          <div *ngIf="f.created_by.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      <!-- </div> -->
+
+      <div class="col-6">
+        <label for="store_address">Store adress</label>
+        <input type="text" name="store_address" formControlName="store_address" class="form-control" />
+
+        <!-- <div *ngIf="submited && f.store_address.errors" class="text-danger">
+          <div *ngIf="f.store_adress.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      </div>
+      <div class="form-check mt-4 ml-3">
+        <input type="checkbox" class="form-check-input" formControlName="is_active" />
+        <!-- (change)="checkCheckBoxvalue($event)"
+          #ch
+          (click)="checkCheckBoxvalue(ch)" -->
+        <label for="active" class="form-check-label">Is active</label>
+      </div>
+    </div>
+  </div>
+  <button [disabled]="editStore.invalid" class="btn btn-primary btn-block mt-5">
+    <span translate>store.update_store</span>
+  </button>
+</form>
+<app-footer></app-footer>

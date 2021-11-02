@@ -1,0 +1,100 @@
+<footer class="container-fluid text-center p-5">
+  <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-md-4 col-lg-2">
+      <h2 translate>Vaanah</h2>
+      <div class="shops-items">
+        <li class="item">
+          <a href="#home">Accueil</a>
+        </li>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-2">
+      <h2 translate>footer.myAccount</h2>
+      <div class="shops-items">
+        <li class="item" *ngFor="let item of compte">
+          <a routerLink="{{ item.link }}">{{ item.title }}</a>
+        </li>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-2">
+      <h2 translate>footer.shops</h2>
+      <div class="shops-items">
+        <li class="item" *ngFor="let store of stores">
+          <span routerLink="/store-products/{{ store.id }}">{{ store.name }}</span>
+        </li>
+        <!-- <li *ngIf="stores.length > 5">
+          <button mat-raised-button color="primary" class="categoryScroll" routerLink="/all-stores">
+            <span translate>footer.moreShop</span>
+          </button>
+        </li> -->
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-2">
+      <h2 translate>footer.newsletter</h2>
+      <p>
+        <span translate>footer.descriptionNewsletter</span> <br />
+        <br />
+        <span translate>footer.descriptionNewsletter2</span>
+      </p>
+      <div class="d-flex mb-4">
+        <form [formGroup]="newsletterForm" class="d-flex">
+          <input type="email" class="form-control" formControlName="email" id="email" placeholder="ENTER YOUR EMAIL" />
+          <input type="submit" class="btn btn-dark" value="OK" (click)="onSubmit()" />
+        </form>
+      </div>
+      <div class="payment-items">
+        <li class="item">
+          <img src="./../../../assets/img/icons/Icon awesome-cc-visa.png" alt="" />
+        </li>
+        <li class="item">
+          <img src="./../../../assets/img/icons/Icon awesome-cc-mastercard.png" alt="" />
+        </li>
+        <li class="item">
+          <img src="./../../../assets/img/icons/Icon ionic-md-cash.png" alt="" />
+        </li>
+
+        <li class="item">
+          <img src="./../../../assets/img/icons/Icon awesome-cc-paypal.png" alt="" />
+        </li>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-2">
+      <h2 routerLink="/about-us" class="about" translate>footer.about</h2>
+      <p>
+        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I
+        will give you a complete account of the system, and expound the actual teachings of the great explorer of the .
+        . .
+      </p>
+
+      <div class="item-social mt-3">
+        <li class="item">
+          <a href="https://www.whatsapp.com" target="_blank">
+            <img src="./../../../assets/img/icons/Whatsapp.png" alt="" />
+          </a>
+        </li>
+        <li class="item">
+          <a href="https://www.facebook.com" target="_blank">
+            <img src="./../../../assets/img/icons/Facebook.png" alt="" />
+          </a>
+        </li>
+        <li class="item">
+          <a href="https://www.instagram.com" target="_blank">
+            <img src="./../../../assets/img/icons/Instagram.png" alt="" />
+          </a>
+        </li>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+</footer>
+<div class="container-fluid footer-bottom-container">
+  <div class="footer-bottom container">
+    <p><span translate>footer.designBy</span></p>
+    <p class="info">infos@vaanah.com 33 000 00 00</p>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+
+<div class="container mt-5">
+  <div class="text-right" *ngIf="hideActionBtn">
+    <button mat-raised-button color="primary" routerLink="/create-store">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+      <span translate>store.create_store</span>
+    </button>
+  </div>
+</div>
+<h2 class="row" *ngIf="stores.length === 0">
+  <span class="not-found" translate>store.result</span>
+</h2>
+<div class="row">
+  <div class="stores container col-sm-10 col-md-8 col-lg-12">
+    <div style="width: 35rem" *ngFor="let store of stores" class="mb-4">
+      <div class="store">
+        <div style="display: flex">
+          <div class="card-body name" routerLink="/store-products/{{ store.id }}">
+            <div class="img mb-2">
+              <img class="img-thumbnail" src="{{ store.image }}" alt="" />
+            </div>
+            <b><span translate>store.name</span> :</b> {{ store.name }}
+          </div>
+        </div>
+        <div class="card-body adresse">
+          <!-- <b><span translate>store.address</span> :</b> {{ store.address }} -->
+          <span>Adress: {{ store.address.country }}</span> <br />
+          <span>Region: {{ store.region }}</span>
+        </div>
+        <div class="card-body adresse">
+          <b><span translate>store.is_active</span> :</b> {{ store.is_active }}
+        </div>
+        <div class="button" *ngIf="hideActionBtn">
+          <button
+            [disabled]="disabledBtn"
+            mat-raised-button
+            color="accent"
+            routerLink="/updatestore/{{ store.id }}"
+            class="mr-3"
+            *ngIf="currentUser"
+          >
+            <span translate>store.update_store</span>
+          </button>
+          <button
+            [disabled]="disabledBtn"
+            mat-raised-button
+            color="warn"
+            (click)="suppressionSrore(store.id)"
+            *ngIf="currentUser"
+          >
+            <span translate>store.delete_store</span>
+          </button>
+        </div>
+        <br />
+        <div class="rating-wrap">
+          <span *ngFor="let rat of getCheckedRatingArray(store.rating)" class="fa fa-star checked"></span>
+          <span class="fa fa-star" *ngFor="let rat of getRatingArray(store.rating)"></span>
+          <div class="label-rating">({{ parseRating(store.rating) }} <span translate>search.vote</span>)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal
+  #effacerSwal
+  title="Deletion "
+  text="Are you sure ?  "
+  type="question"
+  confirmButtonText="Yes"
+  cancelButtonText="No"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="deleteStore()"
+></swal>
+<app-footer></app-footer>

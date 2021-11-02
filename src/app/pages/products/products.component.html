@@ -1,0 +1,103 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<div class="container">
+  <div class="text-center">
+    <button mat-raised-button color="primary" routerLink="/addproduct" *ngIf="currentUser">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+      <span translate>product.create_product</span>
+    </button>
+  </div>
+  <!-- <div class="text-right">
+    <button mat-raised-button color="accent" routerLink="/cart">View cart</button>
+  </div> -->
+  <h2 *ngIf="products.length > 0"><span translate>product.products</span></h2>
+  <div class="container">
+    <h2 *ngIf="products.length === 0"><span translate>product.no_products</span></h2>
+    <div class="row">
+      <div class="col-md-5 col-lg-3 product" *ngFor="let product of products; let i = index">
+        <div class="store_name">
+          <b><span translate>product.store</span> : </b> {{ product.store }}
+        </div>
+        <div class="img mb-2" *ngIf="product.images.length === 0">
+          <img class="img-thumbnail" src="" alt="" />
+        </div>
+        <div class="img mb-2" *ngIf="product.images.length > 0">
+          <img class="img-thumbnail" src="{{ product.images[0].file }}" alt="" />
+        </div>
+        <div class="content">
+          <h3 class="name" *ngIf="product.name.length > 20">
+            <b><span translate>product.name</span> : </b>{{ product.name.slice(0, 20) }}...
+          </h3>
+          <h3 class="name" *ngIf="product.name.length <= 20">
+            <b><span translate>product.name</span> : </b>{{ product.name }}
+          </h3>
+          <span class="slug"
+            ><b><span translate>product.slug</span> : </b>{{ product.slug }}</span
+          >
+          <p class="description">
+            <b><span translate>product.description</span> : </b>
+            {{ product.description }}
+          </p>
+          <div class="price">
+            <b><span translate>product.price</span> : </b> {{ formatPrice(product.price | currency: 'EUR') }}
+          </div>
+          <div class="quantity">
+            <b><span translate>product.quantity</span> : </b> {{ product.quantity }}
+          </div>
+          <div class="is_active">
+            <b><span translate>product.is_active</span> : </b> {{ product.is_active }}
+          </div>
+        </div>
+        <div class="button_group mt-3">
+          <!-- <button mat-raised-button color="accent" class="mr-3 mb-2" (click)="addProducts(product.id)">
+            Add to cart
+          </button> -->
+          <button
+            [disabled]="disabledBtn"
+            mat-raised-button
+            color="accent"
+            class="mr-3 mb-2"
+            routerLink="/update-product/{{ product.id }}"
+            *ngIf="currentUser"
+          >
+            <span translate>product.update_product</span>
+          </button>
+
+          <button
+            [disabled]="disabledBtn"
+            mat-raised-button
+            color="warn"
+            (click)="suppressionProduct(product.id)"
+            *ngIf="currentUser"
+          >
+            <span translate>product.delete_product</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal
+  #effacerSwal
+  title="Deletion "
+  text="Are you sure ?  "
+  type="question"
+  confirmButtonText="Yes"
+  cancelButtonText="No"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="deleteProducts()"
+></swal>
+<app-footer></app-footer>

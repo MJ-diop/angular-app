@@ -1,0 +1,19 @@
+.content {
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.subtitle {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subtitle h3 {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #29235c;
+}

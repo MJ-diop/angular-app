@@ -1,0 +1,46 @@
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.article,
+.product {
+  width: 50%;
+}
+
+.qte,
+.incdecqte {
+  width: 25%;
+}
+
+.shipadress,
+.selectadressship {
+  width: 25%;
+}
+
+.product {
+  display: flex;
+}
+
+.img-product {
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.price {
+  color: #b82704;
+}
+
+.info {
+  h4,
+  p,
+  a {
+    margin-bottom: 0 !important;
+  }
+}
+
+.productrow {
+  display: flex;
+  justify-content: space-between;
+}

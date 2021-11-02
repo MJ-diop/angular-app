@@ -1,0 +1,35 @@
+#review-stars {
+  app-review-stars {
+    font-size: xx-large !important;
+  }
+
+  ul {
+    text-align: center;
+    line-height: 2em;
+    font-size: larger;
+  }
+}
+#review-stats {
+  @media screen and (max-width: 991px) {
+    border-bottom: 1px solid grey;
+  }
+  @media screen and (min-width: 992px) {
+    border-left: 1px solid grey;
+  }
+}
+app-reviews-stats {
+  padding-left: 1%;
+}
+
+* {
+  font-family: 'Raleway' !important;
+}
+.reviews {
+  h1 {
+    font-size: xx-large;
+  }
+  hr {
+    background-color: #f39200;
+    height: 1.5px;
+  }
+}

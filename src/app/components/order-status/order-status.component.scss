@@ -1,0 +1,11 @@
+mat-progress-bar {
+  height: 0.8em;
+}
+::ng-deep {
+  .mat-progress-bar-fill::after {
+    background-color: #29235c !important;
+  }
+  .mat-progress-bar-buffer {
+    background-color: gray !important;
+  }
+}

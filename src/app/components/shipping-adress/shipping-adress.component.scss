@@ -1,0 +1,72 @@
+.shipping-adress {
+  display: flex;
+  flex-wrap: wrap;
+
+  .address {
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-top: 10px;
+
+    ul {
+      list-style: none;
+    }
+
+    .deliver-to {
+      margin-bottom: 10px;
+      margin-right: 18px;
+
+      .btn-deliver-to {
+        background-color: #f39200;
+        padding: 5px 21px;
+        border-radius: 5px;
+        color: #fff;
+        transition: 200ms;
+        font-family: 'Raleway' !important;
+
+        &:hover {
+          text-decoration: none;
+          background-color: #ff9c07;
+        }
+      }
+    }
+
+    .edit-delete {
+      display: flex;
+      padding-bottom: 10px;
+
+      .edit {
+        margin-right: 5px;
+
+        .btn-edit {
+          background-color: #e2e3e5;
+          padding: 4px 28px;
+          border-radius: 5px;
+          color: #383d41;
+          transition: 200ms;
+          font-family: 'Raleway';
+
+          &:hover {
+            text-decoration: none;
+            background-color: #d6d8d9;
+          }
+        }
+      }
+
+      .delete {
+        .btn-delete {
+          background-color: #e2e3e5;
+          padding: 4px 28px;
+          border-radius: 5px;
+          color: #383d41;
+          transition: 200ms;
+          font-family: 'Raleway';
+
+          &:hover {
+            text-decoration: none;
+            background-color: #d6d8d9;
+          }
+        }
+      }
+    }
+  }
+}

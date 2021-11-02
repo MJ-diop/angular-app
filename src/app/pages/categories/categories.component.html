@@ -1,0 +1,68 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<div class="container">
+  <div class="text-right">
+    <button mat-raised-button color="primary" routerLink="/create-categories">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="currentColor"
+        class="bi bi-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+      <span translate>category.create_category</span>
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="stores container col-sm-10 col-md-8 col-lg-12">
+    <div style="width: 35rem" *ngFor="let category of categories">
+      <div class="store">
+        <div style="display: flex">
+          <div class="img mb-2">
+            <img class="img-thumbnail" src="{{ category.image }}" alt="" />
+          </div>
+          <div class="card-body name" routerLink="">
+            <b><span translate>category.name</span> :</b> {{ category.name }}
+          </div>
+          <div class="card-body adresse">
+            <b><span translate>category.description</span> :</b> {{ category.description }}
+          </div>
+          <div class="card-body adresse">
+            <b><span translate>category.is_active</span> :</b> {{ category.is_active }}
+          </div>
+          <div class="card-body children" *ngIf="category.children.length > 0">
+            <b><span translate>category.children</span> :</b>
+            <div *ngFor="let child of category.children">
+              {{ child.name }}
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <!-- [disabled]="!disabledBtn" -->
+          <button
+            mat-raised-button
+            color="accent"
+            routerLink="/update-categories/{{ category.id }}"
+            class="mr-3"
+            *ngIf="currentUser"
+          >
+            <span translate>category.update_category</span>
+          </button>
+          <!-- [disabled]="!disabledBtn" -->
+          <button mat-raised-button color="warn" (click)="deleteCategory(category.id)" *ngIf="currentUser">
+            <span translate>category.delete_category</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

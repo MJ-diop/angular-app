@@ -1,0 +1,72 @@
+<button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+  <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+  <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+</button>
+
+<mat-sidenav-container style="z-index: 0">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      routerLink="/"
+      class="avatar mat-elevation-z8"
+      src="./../../../../assets/dashboard/Vaanah logotype privisoire-05.svg"
+    />
+
+    <mat-divider></mat-divider>
+
+    <button
+      *ngFor="let item of menuItems"
+      mat-button
+      class="menu-button"
+      routerLink="{{ item.path }}"
+      routerLinkActive="active"
+    >
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span>{{ item.title }}</span>
+    </button>
+    <button *ngIf="showBtn" class="button" routerLink="/addproduct"><mat-icon>add</mat-icon> Upload product</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-admin-navbar [welcome]="welcome" [infos]="infos"></app-admin-navbar>
+    <div class="mat-elevation-z8 main-content d-flex mt-5 mb-5 p-5">
+      <div class="container">
+        <div class="row">
+          <div class="card p-4 col-lg-12" style="border: none">
+            <h1>{{ productDatas['name'] }}</h1>
+          </div>
+
+          <div class="card p-4 col-lg-12 mt-4" style="border: none">
+            {{ productDatas['description'] }}
+          </div>
+
+          <div class="card p-4 col-lg-12 mt-4" style="border: none">
+            <h1>Media</h1>
+            <div>
+              <img
+                class="mr-1 ml-1 mb-2"
+                *ngFor="let item of productDatas['images']"
+                src="{{ item.file }}"
+                width="200"
+                height="200"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card ml-4" style="border: none; width: 300px; height: fit-content">
+        <div class="text-center p-4">
+          <div class="mb-4">
+            <h2>
+              Categories: <b>{{ category }}</b>
+            </h2>
+          </div>
+          <div class="">
+            <h2>
+              Shop: <b>{{ store }}</b>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

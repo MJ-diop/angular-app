@@ -1,0 +1,24 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<app-headers></app-headers>
+<app-breadcrumb [name]="'Region / ' + region"></app-breadcrumb>
+
+<h2 class="text-center" *ngIf="storesNumber === 0">
+  <span class="not-found" translate>store.result</span>
+</h2>
+
+<!--<div class="container" >
+  <app-best-deals
+    title=" {{ region + ' products ' }} "
+    [products]="products"
+    carouselId="carouselExampleIndicators5"
+  ></app-best-deals>
+</div>-->
+
+<div class="container" *ngIf="storesNumber > 0">
+  <app-layouts title="{{ region + ' shops' }}" [stores]="stores" carouselId="carouselExampleIndicators6"></app-layouts>
+
+  <app-pagination [products]="products"></app-pagination>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,24 @@
+<div class="row" *ngIf="reviews">
+  <div class="col-6 col-lg-7 d-md-none d-lg-block">
+    <div class="row" *ngFor="let review of reviews; let star; of: [1, 2, 3, 4, 5]; let index = index">
+      <div class="col-4"><app-review-stars [rating]="index + 1"></app-review-stars></div>
+      <div class="col-3">({{ ratings[index] }} <span translate>review.votes</span>)</div>
+
+      <div class="col-4">
+        <div class="bar w-100 p-0"><div class="inner" [ngStyle]="{ width: (index + 1) * 20 + '%' }"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 text-center offset-lg-1 col-lg-3">
+    <ul class="list-unstyled">
+      <li>
+        <button mat-raised-button class="mb-2 p-2" (click)="onClick()" [disabled]="!hasOrdered">
+          <span translate>review.addReview</span>
+        </button>
+      </li>
+      <li>
+        <button mat-raised-button class="mb-2 p-2" disabled><span translate>review.ask_questions</span></button>
+      </li>
+    </ul>
+  </div>
+</div>

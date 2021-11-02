@@ -1,0 +1,30 @@
+.card {
+  border: none;
+
+  b {
+    font-size: 22px;
+  }
+
+  .card-header {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-evenly;
+    padding: 20px;
+
+    .first-box {
+      position: relative;
+
+      div {
+        img {
+          position: absolute;
+          top: 35%;
+          left: 30%;
+        }
+      }
+    }
+  }
+}

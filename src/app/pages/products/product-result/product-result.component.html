@@ -1,0 +1,355 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<!-- ========================= SECTION CONTENT ========================= -->
+
+<app-breadcrumb [home]="home" [name]="categoryName"></app-breadcrumb>
+
+<section class="section-content padding-y">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-12 mb-0">
+        <app-search (login)="searchProduct($event)" [isClicked]="isClicked" [searchWord]="keyWord"></app-search>
+      </div> -->
+      <!-- <div class="col-12" *ngIf="products.length === 0">
+        <p class="text-center text-uppercase mt-10" translate>home.result</p>
+      </div> -->
+
+      <div class="col-12 mt-1" *ngIf="isChecked">
+        <h3 class="query" *ngIf="similarities === false">{{ keyWord }}</h3>
+        <h3 class="query-similar" *ngIf="similarities === true">
+          <span class="query">{{ keyWord }}</span> <span translate>home.similarities</span>
+        </h3>
+        <header class="border-bottom mb-4 pb-3">
+          <div class="form-inline">
+            <span class="mr-md-auto items">{{ products.length }} <span translate>search.result</span> </span>
+            <label class="form-control-label label mr-2" for=""><span translate>search.sort</span> </label>
+            <select class="mr-auto form-control">
+              <option><span translate>search.latest</span></option>
+              <option><span translate>search.trending</span></option>
+              <option><span translate>search.most_popular</span></option>
+              <option><span translate>search.cheapest</span></option>
+            </select>
+            <label class="form-control-label mr-2 label" for=""><span translate>search.show</span> </label>
+            <select class="mr-auto form-control">
+              <option><span translate>search.latest</span></option>
+              <option><span translate>search.trending</span></option>
+              <option><span translate>search.most_popular</span></option>
+              <option><span translate>search.cheapest</span></option>
+            </select>
+            <label class="form-control-label mr-2 label" for=""><span translate>search.page</span> </label>
+            <nav aria-label="Page navigation sample">
+              <pagination-controls
+                class="pagination mt-3"
+                id="listing_pagination"
+                maxSize="10"
+                directionLinks="true"
+                (pageChange)="page = $event"
+              >
+              </pagination-controls>
+              <!-- <ul class="pagination mt-3">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#"><span translate>search.previous</span></a>
+                </li>
+                <li class="page-item active"><a class="page-link">1</a></li>
+                <li class="page-item"><a class="page-link">2</a></li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item">
+                  <a class="page-link"><span translate>search.next</span></a>
+                </li>
+              </ul> -->
+            </nav>
+          </div>
+        </header>
+        <!-- sect-heading -->
+      </div>
+      <div class="row" *ngIf="isChecked">
+        <aside class="col-md-3 filters">
+          <div class="card card-filter">
+            <div class="card-header filter-header">
+              <h2 class="label"><span translate>search.filter_by</span></h2>
+              <!-- <button  class="filter">
+                <span><span translate>search.clear</span></span>
+              </button> -->
+            </div>
+            <!-- filter-group  .// -->
+            <article class="filter-group">
+              <!-- <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h3 class="title">Brands</h3>
+                </a>
+              </header> -->
+              <div class="filter-content collapse show" id="collapse_2">
+                <div class="card-body">
+                  <label class="custom-control custom-checkbox" *ngFor="let category of categories">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      [value]="category.id"
+                      (change)="filterCategory($event, category)"
+                    />
+                    <div class="custom-control-label">
+                      {{ category.name }}
+                      <!-- <b class="badge badge-pill badge-light float-right">35</b> -->
+                    </div>
+                  </label>
+                  <!-- <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" />
+                    <div class="custom-control-label">
+                      Women <b class="badge badge-pill badge-light float-right">89</b>
+                    </div>
+                  </label> -->
+                </div>
+                <!-- card-body.// -->
+              </div>
+            </article>
+            <!-- filter-group .// -->
+            <article class="filter-group">
+              <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h3 class="label"><span translate>search.price</span></h3>
+                </a>
+              </header>
+              <div class="filter-content collapse show" id="collapse_3" style="">
+                <div class="card-body">
+                  <!-- <input
+                    type="range"
+                    class="custom-range"
+                    min="0"
+                    max="15000"
+                    name=""
+                    (change)="priceFiltering($event)"
+                  /> -->
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label><span translate>search.min</span></label>
+                      <input class="form-control" placeholder="" type="number" [(ngModel)]="minPrice" />
+                    </div>
+                    <div class="form-group text-right col-md-6">
+                      <label><span translate>search.max</span></label>
+                      <input class="form-control" placeholder="" type="number" [(ngModel)]="maxPrice" />
+                    </div>
+                  </div>
+                  <!-- form-row.// -->
+                  <button class="btn btn-block applyBtn" (click)="filterMinMaxPrice()">
+                    <span translate>search.apply</span>
+                  </button>
+                </div>
+                <!-- card-body.// -->
+              </div>
+            </article>
+            <!-- filter-group .// -->
+            <!-- <article class="filter-group">
+              <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h3 class="label"><span translate>search.size</span></h3>
+                </a>
+              </header> -->
+            <!-- <div class="filter-content collapse show" id="collapse_4" style="">
+                <div class="card-body">
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="btn btn-light"> XL </span>
+                  </label>
+
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="btn btn-light"> XXL </span>
+                  </label>
+
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="btn btn-light"> S </span>
+                  </label>
+
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="btn btn-light"> M </span>
+                  </label>
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="btn btn-light"> L </span>
+                  </label>
+                </div>
+              </div> -->
+            <!-- </article> -->
+            <!-- filter-group .// -->
+            <article class="filter-group">
+              <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h3 class="label"><span translate>profile.store_button</span></h3>
+                </a>
+              </header>
+              <div class="filter-content collapse show" id="collapse_5" style="">
+                <div class="card-body">
+                  <label class="custom-control custom-checkbox" *ngFor="let store of stores">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input checkboxBtn"
+                      [value]="store.id"
+                      (change)="filterShop($event, store)"
+                    />
+                    <div class="custom-control-label">
+                      {{ store.name }}
+                      <!-- <b class="badge badge-pill badge-light float-right">120</b> -->
+                    </div>
+                  </label>
+                  <!-- <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input checkboxBtn" />
+                    <div class="custom-control-label">
+                      Nike <b class="badge badge-pill badge-light float-right">15</b>
+                    </div>
+                  </label> -->
+                  <!-- <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input checkboxBtn" />
+                    <div class="custom-control-label">
+                      Puma <b class="badge badge-pill badge-light float-right">35</b>
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input checkboxBtn" />
+                    <div class="custom-control-label">
+                      Nissan <b class="badge badge-pill badge-light float-right">89</b>
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input checkboxBtn" />
+                    <div class="custom-control-label">
+                      New Balance <b class="badge badge-pill badge-light float-right">30</b>
+                    </div>
+                  </label> -->
+                </div>
+                <!-- card-body.// -->
+              </div>
+            </article>
+            <!-- filter-group .// -->
+            <!-- <article class="filter-group">
+              <header class="card-header">
+                <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+                  <i class="icon-control fa fa-chevron-down"></i>
+                  <h3 class="label"><span translate>search.color</span></h3>
+                </a>
+              </header> -->
+            <!-- <div class="filter-content collapse show" id="collapse_4" style="">
+                <div class="card-body">
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="fa fa-circle" id="red"></span>
+                  </label>
+
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="fa fa-circle" id="teal"></span>
+                  </label>
+
+                  <label class="checkbox-btn">
+                    <input type="checkbox" />
+                    <span class="fa fa-circle" id="blue"></span>
+                  </label>
+                </div>
+              </div> -->
+            <!-- </article> -->
+            <!-- filter-group .// -->
+          </div>
+          <!-- card.// -->
+        </aside>
+        <!-- col.// -->
+        <main class="col-md-9">
+          <!-- card-product .// -->
+
+          <article
+            class="card bg-black card-product-list"
+            *ngFor="
+              let product of products
+                | filterPrice: priceFilter
+                | filterMinMaxPrice: filterPriceTable
+                | paginate
+                  : { id: 'listing_pagination', itemsPerPage: 20, currentPage: page, totalItems: products.length };
+              let i = index
+            "
+          >
+            <div class="row no-gutters">
+              <aside class="col-md-3">
+                <a routerLink="/product-detail/{{ product.id }}/{{ i }}/" class="img-wrap"
+                  ><img src="{{ product.images[0].file }}"
+                /></a>
+              </aside>
+              <!-- col.// -->
+              <div class="col-md-9">
+                <div class="info-main">
+                  <a routerLink="/product-detail/{{ product.id }}/{{ i }}/" class="h5 title" style="color: #f39200">
+                    {{ product.name }}
+                  </a>
+                  <!-- rating-wrap.// -->
+
+                  <p>
+                    {{ product.description }}
+                  </p>
+                  <div class="row mb-2 mt-2">
+                    <div class="col">
+                      <button class="prices" disabled>
+                        <span>{{ formatPrice(product.price | currency: 'EUR') }}</span>
+                      </button>
+                    </div>
+                    <div class="col">
+                      <div class="rating-wrap">
+                        <span
+                          *ngFor="let rat of getCheckedRatingArray(product.rating)"
+                          class="fa fa-star checked"
+                        ></span>
+                        <span class="fa fa-star" *ngFor="let rat of getRatingArray(product.rating)"></span>
+                        <div class="label-rating">
+                          ({{ parseRating(product.rating) }} <span translate>search.vote</span>)
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <h3 translate>
+                        <span translate> search.category</span>:
+                        <span style="color: #f39200; font-size: 1 rem"
+                          ><span>{{ product.category }}</span></span
+                        >
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="row mb-1">
+                    <div class="col" (click)="AddWishlist(product.id)">
+                      <i class="fa fa-heart icon-heart"></i>
+                      <span class="whishlist"><span translate>search.add_wishlist</span></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- info-main.// -->
+              </div>
+            </div>
+            <!-- row.// -->
+          </article>
+          <!-- card-product .// -->
+
+          <pagination-controls id="listing_pagination" maxSize="2" directionLinks="true" (pageChange)="page = $event">
+          </pagination-controls>
+          <!-- <nav aria-label="Page navigation sample">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#"><span translate>search.previous</span></a>
+              </li>
+              <li class="page-item active"><a class="page-link">1</a></li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item">
+                <a class="page-link"><span translate>search.previous</span></a>
+              </li>
+            </ul>
+          </nav> -->
+        </main>
+      </div>
+      <!-- col.// -->
+    </div>
+  </div>
+  <!-- container .//  -->
+</section>
+<app-footer></app-footer>

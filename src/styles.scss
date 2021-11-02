@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+body {
+  // font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Raleway', sans-serif;
+}
+.ngx-pagination .current {
+  background: #29235c !important;
+  border-radius: 50% !important;
+}
+
+.mat-tab-body-content {
+  overflow: hidden !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+  background-color: rgba(243, 146, 0, 0.3) !important;
+  color: #000 !important;
+}
+
+.billing {
+  :host ::ng-deep .mat-step-icon {
+    border-radius: 50% !important;
+  }
+}
+
+.mat-button {
+  background-color: #f39200 !important;
+  color: #fff !important;
+}

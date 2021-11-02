@@ -1,0 +1,20 @@
+.page-link {
+  border-radius: 50%;
+  margin: 0 5px;
+  color: #29235c;
+  border: 1px solid #29235c;
+  cursor: pointer;
+}
+
+.page-item.active .page-link {
+  font-weight: 600;
+  color: #f39200;
+  background-color: #29235c;
+  border-color: #29235c;
+}
+
+.page-item {
+  img {
+    cursor: pointer;
+  }
+}

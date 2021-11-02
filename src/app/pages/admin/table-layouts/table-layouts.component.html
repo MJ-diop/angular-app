@@ -1,0 +1,24 @@
+<div class="card" style="border: none">
+  <div *ngIf="title" class="card-header card-header-warning">
+    <h4 class="card-title">{{ title }}</h4>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table table-hover">
+      <thead class="text-warning">
+        <th *ngFor="let item of thItems">{{ item.title }}</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of trItems | filter: terms">
+          <td routerLink="/admin-product-detail/{{ item.id }}">
+            <img class="mr-3" src="{{ item.images[0].file }}" width="50" height="50" alt="" />
+            {{ item.name }}
+          </td>
+          <td *ngIf="!categoryName">€{{ item.price }}</td>
+          <td *ngIf="categoryName">{{ item.category }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>€{{ +item.price * +item.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

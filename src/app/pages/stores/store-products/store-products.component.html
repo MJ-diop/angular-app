@@ -1,0 +1,48 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+
+<div class="container mt-5">
+  <h1 class="text-center my-5 deal mt-5">
+    <b class="mt-5">{{ storeName }}</b>
+  </h1>
+  <h1 class="text-center my-5 deal" *ngIf="produits1.length > 0" translate>storeProduct.deals</h1>
+  <div class="row">
+    <div class="col" *ngFor="let produit1 of produits1; let i = index">
+      <div class="deals">
+        <h1>{{ produit1.name }}</h1>
+        <img src="{{ produit1.images[0].file }}" alt="" />
+        <div class="reduction">
+          <h1 translate>storeProduct.upTo</h1>
+          <p *ngIf="produit1.description.length > 10">{{ produit1.description.slice(0, 30) }}</p>
+          <p *ngIf="produit1.description.length <= 10">{{ produit1.description }}</p>
+          <button routerLink="/product-detail/{{ produit1.id }}/{{ i }}/" translate>storeProduct.moreButton</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 class="text-center my-5" translate>storeProduct.shopCatalog</h1>
+
+  <div class="text-center" *ngIf="products.length === 0">
+    <h4 translate>storeProduct.noProducts</h4>
+    <button routerLink="/" class="shop-btn"><span translate>wishlist.back_button</span></button>
+  </div>
+  <div class="divider mb-4 mt-3"></div>
+
+  <app-product [products]="products"> </app-product>
+</div>
+
+<div class="similar_products container" *ngIf="products.length !== 0">
+  <app-reviews
+    (reviewEdit)="updateReview($event)"
+    (reviewAdd)="addReview(idStore)"
+    (reviewDelete)="deleteReview($event)"
+    [reviews]="reviews"
+    [rating]="rating"
+    [id]="idStore"
+  ></app-reviews>
+</div>
+<app-footer></app-footer>

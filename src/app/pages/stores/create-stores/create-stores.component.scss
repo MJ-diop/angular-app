@@ -1,0 +1,12 @@
+label {
+  color: rgb(0, 0, 0);
+}
+
+input {
+  padding: 1.5rem 0.7rem;
+
+  &:focus {
+    box-shadow: none;
+    border: 1px solid #f09202;
+  }
+}

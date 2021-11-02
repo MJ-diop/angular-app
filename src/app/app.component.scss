@@ -1,0 +1,19 @@
+.exemple-button {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.exemple-icon {
+  padding: 0 14px;
+}
+
+.exemple-spacer {
+  flex: 1 1 auto;
+}

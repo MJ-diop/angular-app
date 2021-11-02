@@ -1,0 +1,36 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<app-breadcrumb [name]="titles"></app-breadcrumb>
+
+<div class="container">
+  <app-layouts title="Best shops" [stores]="bestShop" carouselId="carouselExampleIndicators3"></app-layouts>
+
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+</div>
+
+<div class="container" *ngIf="!showSpinner">
+  <div class="row">
+    <div class="col">
+      <div class="deals">
+        <img src="{{ shopOfTheWeek['image'] }}" alt="" />
+        <div class="reduction">
+          <h1>Shop of the week</h1>
+          <h1 translate>storeProduct.upTo</h1>
+          <!-- <p *ngIf="shopOfTheWeek.description.length > 10">{{ shopOfTheWeek.description.slice(0, 30) }}</p>
+          <p *ngIf="shopOfTheWeek.description.length <= 10">{{ shopOfTheWeek.description }}</p> -->
+          <button routerLink="/store-products/{{ shopOfTheWeek['id'] }}/" translate>storeProduct.moreButton</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <app-layouts title="All shops" [stores]="bestShop" carouselId=""></app-layouts>
+
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+
+  <app-pagination [products]="bestShop"></app-pagination>
+</div>
+<app-footer></app-footer>

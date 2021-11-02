@@ -1,0 +1,39 @@
+<div class="productrow" *ngFor="let product of products">
+  <div class="product">
+    <div class="img-product"><img height="100" width="100" src="{{ product.img }}" alt="" /></div>
+    <div class="info">
+      <h4>
+        <b>{{ product.name }}</b>
+      </h4>
+      <p class="price">{{ product.price | currency: 'EUR' }}</p>
+      <p>Shop : {{ product.shop }}</p>
+      <a href="#">Delete</a>
+    </div>
+  </div>
+
+  <div class="incdecqte">
+    <mat-form-field>
+      <mat-select placeholder="Change quantity" disableRipple [(value)]="selected">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+        <mat-option value="3">4</mat-option>
+        <mat-option value="3">5</mat-option>
+        <mat-option value="3">6</mat-option>
+        <mat-option value="3">7</mat-option>
+        <mat-option value="3">8</mat-option>
+        <mat-option value="3">9</mat-option>
+        <mat-option value="3">10</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="selectadressship">
+    <mat-form-field>
+      <mat-select placeholder="Change shipping adress" disableRipple>
+        <mat-option value="1">Dakar, Senegal, Hann Mariste</mat-option>
+        <mat-option value="2">Dakar, Senegal, Pikine</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

@@ -1,0 +1,321 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <mat-card class="col-12 mt-5">
+            <mat-card-title-group>
+              <mat-card-title>Category - Store</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content>
+              <div class="row">
+                <div class="form-group col-6 mt-5">
+                  <label for="category"><span translate>product.category</span></label>
+                  <select class="form-control" formControlName="category" (change)="categoryEvent($event)">
+                    <option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</option>
+                  </select>
+                </div>
+
+                <!-- <mat-form-field class="col-6 mt-5">
+                  <mat-label for="category" translate>product.category</mat-label>
+                  <mat-select id="category" formControlName="category" (change)="categoryEvent($event)" required>
+                    <mat-option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+
+                <div class="form-group col-6 mt-5">
+                  <label for="store"><span translate>product.store</span></label>
+                  <select class="form-control" formControlName="store" (change)="storeEvent($event)">
+                    <option *ngFor="let store of stores" value="{{ store.id }}">{{ store.name }}</option>
+                  </select>
+                </div>
+                <!--   
+                <mat-form-field class="col-6 mt-5">
+                  <mat-label for="store"><span translate>product.store</span></mat-label>
+                  <mat-select id="store" formControlName="store" (change)="storeEvent($event)">
+                    <mat-option *ngFor="let store of stores" value="{{ store.id }}">{{ store.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field> -->
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="col-12 mt-5">
+            <mat-card-title-group>
+              <mat-card-title>Name - Slug - Price - Quantity - Description</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content>
+              <div class="row">
+                <mat-form-field appearance="outline" class="col-6 mt-5">
+                  <mat-label for="name" translate>product.name</mat-label>
+                  <input matInput type="text" id="name" formControlName="name" placeholder="Name" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-6 mt-5">
+                  <mat-label for="slug"><span translate>product.slug</span></mat-label>
+                  <input matInput type="text" id="slug" formControlName="slug" placeholder="Slug" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-6">
+                  <mat-label for="price"><span translate>product.price</span></mat-label>
+                  <input matInput type="number" id="price" formControlName="price" placeholder="Price" required />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-6">
+                  <mat-label for="quantity"><span translate>product.quantity</span></mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    id="quantity"
+                    formControlName="quantity"
+                    placeholder="Quantity"
+                    required
+                  />
+                </mat-form-field>
+
+                <mat-form-field class="col-12">
+                  <mat-label for="description"><span translate>product.description</span></mat-label>
+                  <textarea matInput placeholder="Description" formControlName="description"> </textarea>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="col-12 mt-5">
+            <mat-card-title-group>
+              <mat-card-title>Parcel</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content>
+              <div class="row">
+                <mat-form-field appearance="outline" class="col-6 mt-5">
+                  <mat-label for="length"><span translate>product.length</span></mat-label>
+                  <input matInput type="number" id="length" formControlName="length" placeholder="Length" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-6 mt-5">
+                  <mat-label for="width"><span translate>product.width</span></mat-label>
+                  <input matInput type="number" id="width" formControlName="width" placeholder="Width" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-6">
+                  <mat-label for="height"><span translate>product.height</span></mat-label>
+                  <input matInput type="number" id="height" formControlName="height" placeholder="Height" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-6">
+                  <mat-label for="weight"><span translate>product.weight</span></mat-label>
+                  <input matInput type="number" id="weight" formControlName="weight" placeholder="Weight" />
+                </mat-form-field>
+
+                <mat-form-field class="col-6">
+                  <mat-label for="distance_unit" translate>product.distance_unit</mat-label>
+                  <mat-select id="distance_unit" formControlName="distance_unit" [(value)]="default_dist_unit">
+                    <mat-option value="cm">cm</mat-option>
+                    <mat-option value="in">in</mat-option>
+                    <mat-option value="ft">ft</mat-option>
+                    <mat-option value="mm">mm</mat-option>
+                    <mat-option value="m">m</mat-option>
+                    <mat-option value="yd">yd</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-6">
+                  <mat-label for="mass_unit"><span translate>product.mass_unit</span></mat-label>
+                  <mat-select id="mass_unit" formControlName="mass_unit" [(value)]="default_mass_unit">
+                    <mat-option value="g">g</mat-option>
+                    <mat-option value="oz">oz</mat-option>
+                    <mat-option value="lb">lb</mat-option>
+                    <mat-option value="kg">kg</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="col-12 mt-5">
+            <mat-card-title-group>
+              <mat-card-title>Images</mat-card-title>
+            </mat-card-title-group>
+            <mat-card-content>
+              <div class="form-group col-12 mt-5">
+                <!-- <label for="pictures"><span translate>product.image</span></label
+                ><br /> -->
+                <table class="table" formArrayName="pictures">
+                  <tr>
+                    <th colspan="2">Add Multiple Image:</th>
+                    <th width="180px">
+                      <button type="button" (click)="addImage()" class="btn-add">Add Picture</button>
+                    </th>
+                  </tr>
+                  <tr *ngFor="let image of pictures().controls; let i = index" [formGroupName]="i">
+                    <td colspan="2">
+                      Image :
+                      <input
+                        class=""
+                        id="file"
+                        type="file"
+                        (change)="handleFileInput($event)"
+                        accept="image/jpg,image/jpeg,image/png,application/pdf"
+                        maxFileSize="1000000"
+                        multiple
+                        required
+                        formControlName="img"
+                      />
+                    </td>
+
+                    <td>
+                      <button (click)="removeImage(i)" class="btn-remove">Remove</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <!-- <div class="form-group col-6">
+            <label for="category"><span translate>product.category</span></label>
+            <select class="form-control" formControlName="category" (change)="categoryEvent($event)">
+              <option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="name"><span translate>product.name</span></label>
+            <input type="text" class="form-control" formControlName="name" />
+          </div> -->
+        </div>
+
+        <!-- <div class="row">
+          <div class="form-group col-6">
+            <label for="slug"><span translate>product.slug</span></label>
+            <input type="text" class="form-control" formControlName="slug" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="description"><span translate>product.description</span></label>
+            <textarea class="form-control" rows="3" formControlName="description" placeholder="Description"></textarea>
+          </div>
+        </div> -->
+
+        <!-- <div class="row">
+          <div class="form-group col-6">
+            <label for="price"><span translate>product.price</span></label>
+            <input type="number" class="form-control" formControlName="price" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="quantity"><span translate>product.quantity</span></label>
+            <input type="number" class="form-control" formControlName="quantity" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="length"><span translate>product.length</span></label>
+            <input type="number" class="form-control" formControlName="length" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="width"><span translate>product.width</span></label>
+            <input type="number" class="form-control" formControlName="width" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="height"><span translate>product.height</span></label>
+            <input type="number" class="form-control" formControlName="height" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="weight"><span translate>product.weight</span></label>
+            <input type="number" class="form-control" formControlName="weight" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="distance_unit"><span translate>product.distance_unit</span></label>
+            <input type="number" class="form-control" formControlName="distance_unit" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="mass_unit"><span translate>product.mass_unit</span></label>
+            <input type="number" class="form-control" formControlName="mass_unit" />
+          </div>
+        </div> -->
+
+        <div class="row">
+          <!-- <div class="form-group col-6">
+            <label for="store"><span translate>product.store</span></label>
+            <select class="form-control" formControlName="store" (change)="storeEvent($event)">
+              <option *ngFor="let store of stores" value="{{ store.id }}">{{ store.name }}</option>
+            </select>
+            <input type="text" class="form-control" formControlName="store" /> 
+          </div> -->
+
+          <!-- <div class="form-check mt-5 mb-5">
+            <mat-checkbox  type="checkbox" class="form-check-input" checked translate></mat-checkbox>
+            <mat-label _ngcontent-spj-c213="" for="active" class="form-check-label">
+              <span _ngcontent-spj-c213="" translate="" ng-reflect-translate="">Is active</span>
+              </mat-label>
+          </div> -->
+
+          <div _ngcontent-spj-c213="" class="form-check mt-5 mb-5">
+            <input _ngcontent-spj-c213="" type="checkbox" checked="" class="form-check-input" />
+            <label _ngcontent-spj-c213="" for="active" class="form-check-label">
+              <span _ngcontent-spj-c213="" translate="" ng-reflect-translate="">Is active</span>
+            </label>
+          </div>
+
+          <!-- <div class="form-group col-8">
+            <label for="pictures"><span translate>product.image</span></label
+            ><br />
+            <table class="table" formArrayName="pictures">
+              <tr>
+                <th colspan="2">Add Multiple Image:</th>
+                <th width="150px">
+                  <button type="button" (click)="addImage()" class="btn btn-primary">Add Picture</button>
+                </th>
+              </tr>
+              <tr *ngFor="let image of pictures().controls; let i = index" [formGroupName]="i">
+                <td>
+                  Image :
+                  <input
+                    class="form-control"
+                    id="file"
+                    type="file"
+                    (change)="handleFileInput($event)"
+                    accept="image/jpg,image/jpeg,image/png,application/pdf"
+                    maxFileSize="1000000"
+                    multiple
+                    required
+                    formControlName="img"
+                  />
+                </td>
+          
+                <td>
+                  <button (click)="removeImage(i)" class="btn btn-danger">Remove</button>
+                </td>
+              </tr>
+            </table>
+          </div> -->
+        </div>
+
+        <button
+          class="col-12"
+          [disabled]="createProductForm.invalid"
+          mat-raised-button
+          color="accent"
+          class="btn-block"
+        >
+          <span translate>product.create_button</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

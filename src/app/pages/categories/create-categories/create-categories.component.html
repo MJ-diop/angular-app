@@ -1,0 +1,73 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="createCategoriesForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="name"><span translate>category.name</span></label>
+            <input type="text" class="form-control" formControlName="name" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="children"><span translate>category.parent</span></label>
+            <select class="form-control" formControlName="parent" (change)="categoryEvent($event)">
+              <option selected value="---">---</option>
+              <option *ngFor="let category of categories">{{ category.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="slug"><span translate>category.slug</span></label>
+            <input type="text" class="form-control" formControlName="slug" />
+          </div>
+
+          <div class="form-group col-6">
+            <label for="description"><span translate>category.description</span></label>
+            <input type="text" class="form-control" formControlName="description" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <input
+              formControlName="image"
+              class="form-control"
+              id="file"
+              type="file"
+              (change)="handleFileInput($event)"
+              accept="image/jpg,image/jpeg,image/png,application/pdf"
+              maxFileSize="1000000"
+              multiple
+              required
+            />
+          </div>
+          <div class="form-group col-6">
+            <input type="checkbox" checked class="form-check-input" />
+            <!-- (change)="checkCheckBoxvalue($event)"
+              #ch
+              (click)="checkCheckBoxvalue(ch)" -->
+            <label for="active" class="form-check-label"><span translate>category.is_active</span></label>
+          </div>
+
+          <!-- <div class="form-group col-6">
+            <label for="children">Children</label>
+            <select class="form-control" formControlName="children" (change)="categoryEvent($event)">
+              <option *ngFor="let category of categorys" value="{{ category.id }}">{{ category.name }}</option>
+            </select>
+          </div> -->
+        </div>
+
+        <button [disabled]="createCategoriesForm.invalid" mat-raised-button color="accent" class="btn-block">
+          <span translate>category.create_button</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

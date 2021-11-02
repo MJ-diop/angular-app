@@ -1,0 +1,63 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<form class="form-group container col-6" [formGroup]="updateProducts">
+  <div class="">
+    <label for="name"><span translate>product.name</span></label>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="name" name="name" formControlName="name" />
+      <!-- [(ngModel)]="name" -->
+    </div>
+  </div>
+
+  <div class="">
+    <label for="description"><span translate>product.description</span></label>
+    <div class="input-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="description"
+        name="description"
+        formControlName="description"
+      />
+      <!-- [(ngModel)]="description" -->
+    </div>
+  </div>
+
+  <div class="">
+    <label for="name"><span translate>product.price</span></label>
+    <div class="input-group">
+      <input type="number" class="form-control" placeholder="price" name="price" formControlName="price" />
+      <!-- [(ngModel)]="price" -->
+    </div>
+  </div>
+
+  <div class="">
+    <label for="quantity"><span translate>product.quantity</span></label>
+    <div class="input-group">
+      <input type="number" class="form-control" placeholder="quantity" name="quantity" formControlName="quantity" />
+      <!-- [(ngModel)]="quantity" -->
+    </div>
+  </div>
+
+  <!-- <div class="">
+    <label for="img"><span translate>product.image</span></label>
+    <div class="input-group">
+      <input type="text" class="form-control" name="img" id="img" formControlName="img" />
+    </div>
+  </div> -->
+
+  <div class="">
+    <div class="form-check mt-4 ml-3">
+      <input type="checkbox" checked class="form-check-input" formControlName="is_active" />
+      <!-- (change)="checkCheckBoxvalue($event)"
+        #ch
+        (click)="checkCheckBoxvalue(ch)" -->
+      <label for="active" class="form-check-label"><span translate>product.is_active</span></label>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-3" (click)="onSubmit()"><span translate>product.update_product</span></button>
+  <button class="btn btn-danger mt-3 ml-3" routerLink="/products"><span translate>product.cancel_button</span></button>
+</form>
+<app-footer></app-footer>

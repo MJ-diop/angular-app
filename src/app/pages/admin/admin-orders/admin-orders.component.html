@@ -1,0 +1,126 @@
+<button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+  <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+  <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+</button>
+
+<mat-sidenav-container style="z-index: 0">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      routerLink="/"
+      class="avatar mat-elevation-z8"
+      src="./../../../../assets/dashboard/Vaanah logotype privisoire-05.svg"
+    />
+
+    <mat-divider></mat-divider>
+
+    <button
+      *ngFor="let item of menuItems"
+      mat-button
+      class="menu-button"
+      routerLink="{{ item.path }}"
+      routerLinkActive="active"
+    >
+      <mat-icon>{{ item.icon }}</mat-icon>
+      <span>{{ item.title }}</span>
+    </button>
+    <button *ngIf="showBtn" class="button" routerLink="/addproduct"><mat-icon>add</mat-icon> Upload product</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-admin-navbar [welcome]="welcome" [infos]="infos"></app-admin-navbar>
+    <div class="mat-elevation-z8 main-content d-flex mt-5 mb-5 pl-5">
+      <div class="container-fluid px-5">
+        <div class="row mb-5">
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <app-box-layouts [items]="itemsN" [itemsName]="itemsNameN" [imgBg]="imgBgN" [img]="imgN"></app-box-layouts>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <app-box-layouts [items]="itemsS" [itemsName]="itemsNameS" [imgBg]="imgBgS" [img]="imgS"></app-box-layouts>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <app-box-layouts [items]="itemsP" [itemsName]="itemsNameP" [imgBg]="imgBgP" [img]="imgP"></app-box-layouts>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <app-box-layouts [items]="itemsC" [itemsName]="itemsNameC" [imgBg]="imgBgC" [img]="imgC"></app-box-layouts>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card p-4 col-lg-12" style="border: none">
+            <form class="mt-3 mb-3 d-flex align-items-center">
+              <label for="filter">FILTERS</label>
+              <input
+                class="ml-3 form-control"
+                type="search"
+                id="filter"
+                name="terms"
+                placeholder="search command"
+                [(ngModel)]="terms"
+              />
+            </form>
+            <div class="card" style="border: none">
+              <div *ngIf="title" class="card-header card-header-warning">
+                <h4 class="card-title">{{ title }}</h4>
+              </div>
+              <p *ngIf="listOrders.length === 0">nos orders</p>
+              <div *ngIf="listOrders.length > 0" class="card-body table-responsive">
+                <table class="table table-hover">
+                  <thead class="text-warning">
+                    <th *ngFor="let item of thItem">{{ item.title }}</th>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let item of listOrders | filter: terms">
+                      <td>
+                        <!-- <img class="mr-3" src="{{ item.images[0].file }}" width="50" height="50" alt="" /> -->
+                        #{{ item.id.slice(0, 3) }}
+                      </td>
+                      <td>
+                        <img
+                          class="mr-3"
+                          src="{{ item.cart_item.product.images[0].file }}"
+                          width="50"
+                          height="50"
+                          alt=""
+                        />
+                        {{ item.cart_item.product.name }}
+                      </td>
+                      <td>{{ categoryName }}</td>
+                      <td>{{ item.payment_method }}</td>
+                      <td>
+                        <span [ngClass]="{ status: item.status === 'confirmed', init: item.status === 'initiated' }">{{
+                          item.status
+                        }}</span>
+                      </td>
+                      <td>€{{ item.total_prices }}</td>
+                      <td>{{ item.created_at | date }}</td>
+                      <td class="action">
+                        <span
+                          id="navbarDropdownMenuLink-5"
+                          data-toggle="dropdown"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                        >
+                          <mat-icon>more_horiz</mat-icon>
+                        </span>
+                        <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="navbarDropdownMenuLink-5">
+                          <a class="dropdown-item d-flex justify-content-center align-items-center"
+                            ><mat-icon>reply</mat-icon> Refund</a
+                          >
+                          <a class="dropdown-item d-flex justify-content-center align-items-center"
+                            ><mat-icon>delete</mat-icon> Delete</a
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

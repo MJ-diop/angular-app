@@ -1,0 +1,243 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  // grid-auto-rows: minmax(100px, auto);
+  // margin: 50px 100px;
+}
+
+.text-regions {
+  h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #29235c;
+  }
+
+  h3 {
+    color: #29235c;
+  }
+}
+
+// .daniel,
+// .jonathan,
+// .kira,
+// .jeanette,
+// .patrick {
+//   // padding: 30px;
+//   // border-radius: 8px;
+//   // box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.2);
+// }
+
+h1 {
+  background: #ff9800;
+  color: #fff;
+  padding: 0.2rem 1rem;
+  width: fit-content;
+  margin: 12px;
+  cursor: pointer;
+}
+
+/* Daniel */
+.daniel {
+  background-color: var(--Moderateviolet);
+  color: var(--White);
+  grid-column: 1/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // height: 260px;
+  div {
+    background-color: #2c19b382;
+    height: 100%;
+  }
+}
+
+.daniel .user img:first-child {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #a174dd;
+}
+
+.daniel .user img:nth-child(4) {
+  float: right;
+  margin-top: -114px;
+  margin-right: 60px;
+}
+
+.daniel .second-text,
+.daniel .user p:nth-child(3) {
+  color: #aa7eed;
+}
+/* Jonathan */
+.jonathan {
+  background-color: var(--Verydarkgrayishblue);
+  color: var(--White);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 260px;
+  div {
+    background-color: #a3a3af63;
+    height: 100%;
+  }
+}
+
+.jonathan img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--White);
+}
+
+.jonathan .second-text,
+.jonathan .user p:nth-child(3) {
+  color: #9097a7;
+}
+
+/* Kira */
+.kira {
+  background-color: var(--White);
+  color: var(--Verydarkblackishblue);
+  grid-row: span 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 350px;
+  height: 480px;
+
+  div {
+    background-color: #a3a3af63;
+    height: 100%;
+  }
+}
+
+.kira img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--Lightgrayishblue);
+}
+
+.kira .second-text,
+.kira .user p:nth-child(3) {
+  color: #9c9fa4;
+}
+
+/* Jeanette */
+.jeanette {
+  background-color: var(--White);
+  color: var(--Verydarkblackishblue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+
+  div {
+    background-color: #a3a3af63;
+    height: 100%;
+  }
+}
+
+.jeanette img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--Lightgrayishblue);
+}
+
+.jeanette .second-text,
+.jeanette .user p:nth-child(3) {
+  color: #9c9fa4;
+}
+
+/* Patrick */
+.patrick {
+  background-color: var(--Verydarkblackishblue);
+  color: var(--White);
+  grid-column: 2/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+
+  div {
+    background-color: #a3a3af63;
+    height: 100%;
+  }
+}
+
+.patrick img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--Moderateviolet);
+}
+
+.patrick .second-text,
+.patrick .user p:nth-child(3) {
+  color: #757984;
+}
+
+.daniel .user,
+.jonathan .user,
+.kira .user,
+.jeanette .user,
+.patrick .user {
+  margin-bottom: -27px;
+}
+
+.daniel .user p,
+.jonathan .user p,
+.kira .user p,
+.jeanette .user p,
+.patrick .user p {
+  position: relative;
+  top: -48px;
+  left: 70px;
+}
+
+.daniel .first-text,
+.jonathan .first-text,
+.kira .first-text,
+.jeanette .first-text,
+.patrick .first-text {
+  font-size: 20px;
+}
+
+.daniel .second-text,
+.jonathan .second-text,
+.kira .second-text,
+.jeanette .second-text,
+.patrick .second-text {
+  margin-top: 20px;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media screen and (max-width: 900px) {
+  main {
+    grid-template-columns: 1fr;
+    margin: 30px;
+  }
+  .daniel {
+    grid-column: 1;
+  }
+
+  .patrick {
+    grid-column: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .daniel .user img:nth-child(4) {
+    margin-right: -20px;
+  }
+}

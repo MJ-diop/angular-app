@@ -1,0 +1,47 @@
+* {
+  font-family: 'Raleway' !important;
+  color: #999999 !important;
+}
+
+img {
+  cursor: pointer;
+}
+h1 {
+  font-size: 2em;
+}
+.signup-dialog {
+  align-content: center;
+  font-size: 0.85em;
+  mat-content-dialog {
+    overflow-y: scroll;
+  }
+  max-width: 600px;
+  max-height: 600px;
+}
+hr {
+  background-color: #4f4f4f !important;
+}
+mat-dialog-container {
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+:host::ng-deep.mat-checkbox-layout {
+  white-space: normal !important;
+  font-size: larger;
+  line-break: normal;
+}
+
+:host::ng-deep.mat-checkbox-inner-container {
+  margin-top: 4px;
+}
+mat-form-field {
+  width: 100%;
+  font-size: larger;
+}
+button {
+  font-size: 1.5em;
+  color: white !important;
+  padding: 0.6em 1.2em;
+  width: 100%;
+  border-radius: 2px;
+}

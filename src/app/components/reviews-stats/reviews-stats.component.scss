@@ -1,0 +1,23 @@
+* {
+  font-family: 'Raleway';
+}
+.bar {
+  border: 1px solid #171f4b;
+  .inner {
+    background-color: #171f4b;
+    height: 1.5em;
+  }
+  margin-bottom: 1em;
+}
+button {
+  background-color: #171f4b;
+  font-size: large;
+  font-weight: bolder;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .d-md-none {
+    display: none;
+  }
+}

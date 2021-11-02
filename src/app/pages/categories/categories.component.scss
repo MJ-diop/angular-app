@@ -1,0 +1,23 @@
+.stores {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+
+  .store {
+    margin: 10px;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+    color: #1f3333;
+
+    &:hover {
+      box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+      transform: translateY(-5px);
+      transition: 0.2s;
+    }
+  }
+
+  .name {
+    cursor: pointer;
+  }
+}

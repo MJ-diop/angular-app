@@ -1,0 +1,269 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<app-breadcrumb [name]="title"></app-breadcrumb>
+
+<div *ngIf="cartData.data[0].numInCart === 0" class="text-center my-5">
+  <h4 translate>basket.empty_basket</h4>
+  <button class="go-home mt-3" routerLink="/" translate>basket.go_shop</button>
+</div>
+
+<div class="container" *ngIf="cartData.data[0].numInCart !== 0">
+  <div class="main-product">
+    <div class="head">
+      <div class="basket-title"><h3 translate>Cart</h3></div>
+      <div class="tolalPrice">
+        <h3 translate>
+          basket.total <span> {{ formatPrice(cartTotal | currency: 'EUR') }}</span>
+        </h3>
+      </div>
+    </div>
+    <div class="basket">
+      <div class="product" *ngFor="let c of cartData.data; let i = index">
+        <div class="image">
+          <img routerLink="/product-detail/{{ c.product.id }}/{{ i }}/" src="{{ c.product.images[0].file }}" alt="" />
+        </div>
+
+        <div class="info">
+          <span class="product-name" routerLink="/product-detail/{{ c.product.id }}/{{ i }}/">{{
+            c.product.name
+          }}</span>
+          <p class="description">
+            {{ c.product.description }}
+          </p>
+          <div class="button">
+            <button>
+              <span translate>basket.unity </span
+              ><span class="amount">{{ formatPrice(c.product.price | currency: 'EUR') }}</span>
+            </button>
+
+            <form class="qty">
+              <span translate>basket.qty</span>
+              <div class="inc">
+                <div class="value-button" id="decrease" (click)="ChangeQuantity(i, false)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-chevron-down"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </div>
+                <!-- readonly -->
+                <div class="value-button" id="increase" (click)="ChangeQuantity(i, true)">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-chevron-up"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <input
+                type="number"
+                id="number"
+                [value]="c.numInCart"
+                [max]="c.product.quantity"
+                (change)="changeQuantity($event, c, i)"
+              />
+            </form>
+            <button class="amount">
+              <span class="totalBtn" translate>basket.total </span
+              ><span>{{ formatPrice(cartService.CalculateSubTotal(i) | currency: 'EUR') }}</span>
+            </button>
+          </div>
+
+          <div class="icone">
+            <svg class="Trac_261_ck" viewBox="31.36 287.676 34.992 33.557" (click)="AddWishlist(c.product.id)">
+              <path
+                id="Trac_261_ck"
+                d="M 48.86216735839844 292.7423400878906 C 49.64483261108398 291.6138610839844 50.49906158447266 290.6119079589844 51.53753280639648 289.7713623046875 C 56.08977890014648 286.0869750976563 61.95802307128906 287.5464172363281 64.78512573242188 292.188720703125 C 66.48695373535156 294.9831848144531 66.70917510986328 297.9934387207031 65.89626312255859 301.1106872558594 C 65.33647155761719 303.2569885253906 64.32642364501953 305.1950988769531 62.93680953979492 306.9076538085938 C 62.11362838745117 307.9220581054688 61.1395149230957 308.8142395019531 60.22966766357422 309.7579956054688 C 56.65715408325195 313.4634399414063 53.08361434936523 317.1680908203125 49.50912857055664 320.8717041015625 C 49.04465866088867 321.3529663085938 48.67362976074219 321.3532409667969 48.20872116088867 320.8715209960938 C 43.77497482299805 316.2771301269531 39.32024002075195 311.7026672363281 34.92512130737305 307.0716857910156 C 33.75910949707031 305.8430786132813 32.98854827880859 304.3134765625 32.36235809326172 302.7350158691406 C 31.31084251403809 300.084228515625 30.99381446838379 297.3652038574219 31.85919380187988 294.61083984375 C 32.92120742797852 291.2308044433594 35.08312606811523 288.865234375 38.57635116577148 287.953857421875 C 41.47276306152344 287.1981811523438 44.04455947875977 288.0266723632813 46.32104873657227 289.8871459960938 C 47.20086288452148 290.606201171875 47.9430046081543 291.4549865722656 48.59950637817383 292.380126953125 C 48.67617797851563 292.4881286621094 48.75496292114258 292.5946044921875 48.86216735839844 292.7423400878906 Z M 48.88286590576172 319.446533203125 C 48.99371719360352 319.3144226074219 49.06652450561523 319.2164611816406 49.15048217773438 319.1293029785156 C 52.39387512207031 315.7634582519531 55.63857650756836 312.3989562988281 58.88233184814453 309.0334777832031 C 59.8680419921875 308.0108947753906 60.93959808349609 307.0558776855469 61.81685638427734 305.9472961425781 C 63.49529266357422 303.8263244628906 64.60649871826172 301.4250793457031 64.83155822753906 298.6860046386719 C 65.02555847167969 296.3238220214844 64.48828887939453 294.1466674804688 63.04241561889648 292.2393798828125 C 60.37696075439453 288.7231750488281 55.96712112426758 288.1639709472656 52.50326919555664 290.8927917480469 C 51.28361129760742 291.8535461425781 50.359130859375 293.0643310546875 49.57464218139648 294.391845703125 C 49.16855621337891 295.0791015625 48.53959655761719 295.0728454589844 48.14021682739258 294.3875122070313 C 47.4011344909668 293.1194152832031 46.51010131835938 291.9767761230469 45.38359069824219 291.0241088867188 C 42.85733795166016 288.8875427246094 39.63013076782227 288.5528869628906 36.92561340332031 290.2047119140625 C 34.74671173095703 291.5355834960938 33.49674224853516 293.5305480957031 33.02265548706055 296.0111083984375 C 32.56635284423828 298.3982849121094 33.01376342773438 300.6715393066406 34.01499176025391 302.8538208007813 C 34.55860900878906 304.0386962890625 35.16934585571289 305.202392578125 36.06919860839844 306.1472778320313 C 39.53545761108398 309.786865234375 43.03837966918945 313.3914489746094 46.52788543701172 317.0088500976563 C 47.29385757446289 317.8028564453125 48.0609245300293 318.5957946777344 48.88286590576172 319.446533203125 Z"
+              ></path>
+            </svg>
+            <svg class="Trac_258_cu" viewBox="-366.977 377.714 27.613 31.655" (click)="suppressionProduict(i)">
+              <path
+                id="Trac_258_cu"
+                d="M -347.1952514648438 381.6929931640625 C -345.234375 381.6929931640625 -343.2987060546875 381.6927795410156 -341.363037109375 381.6932373046875 C -341.0196533203125 381.6932373046875 -340.6162719726563 381.5833435058594 -340.3474731445313 381.7259826660156 C -339.9674682617188 381.9276733398438 -339.68701171875 382.3171081542969 -339.3639526367188 382.6264038085938 C -339.6771240234375 382.9423217773438 -339.9971923828125 383.5318603515625 -340.3028564453125 383.5242919921875 C -341.326416015625 383.4993591308594 -341.4567260742188 384.011474609375 -341.517333984375 384.8509826660156 C -342.0386352539063 392.0410766601563 -342.59521484375 399.2288513183594 -343.1458129882813 406.4168395996094 C -343.2882080078125 408.2760314941406 -344.4100341796875 409.3527526855469 -346.2639770507813 409.3584899902344 C -350.8807373046875 409.3728942871094 -355.4974975585938 409.3740539550781 -360.1143188476563 409.3552551269531 C -361.971435546875 409.3476867675781 -363.0694580078125 408.2687072753906 -363.2123413085938 406.3932495117188 C -363.7633666992188 399.1672668457031 -364.321533203125 391.9416809082031 -364.8487548828125 384.7138671875 C -364.9046020507813 383.948974609375 -365.0523071289063 383.5423889160156 -365.9561157226563 383.5348205566406 C -366.2988891601563 383.5318603515625 -366.6367797851563 382.9306640625 -366.9769897460938 382.6021423339844 C -366.6102294921875 382.2999267578125 -366.2528686523438 381.750244140625 -365.8753662109375 381.7360534667969 C -363.6715698242188 381.6529541015625 -361.4631958007813 381.6953125 -359.317138671875 381.6953125 C -359.2127685546875 381.5458068847656 -359.1339721679688 381.485595703125 -359.1358032226563 381.4279174804688 C -359.217529296875 378.8834838867188 -357.8753051757813 377.5448608398438 -355.1057739257813 377.731201171875 C -353.6245727539063 377.8310546875 -352.1309814453125 377.7431335449219 -350.6428833007813 377.7506713867188 C -348.4136962890625 377.7618713378906 -347.3692626953125 378.7740478515625 -347.2659912109375 381.0050354003906 C -347.257568359375 381.1893310546875 -347.2289428710938 381.3729553222656 -347.1952514648438 381.6929931640625 Z M -343.30078125 383.6966857910156 L -363.0238647460938 383.6966857910156 C -363.0238647460938 383.9890441894531 -363.0362548828125 384.1763305664063 -363.0220947265625 384.3612976074219 C -362.4698486328125 391.5834350585938 -361.9069213867188 398.8048400878906 -361.3693237304688 406.0281066894531 C -361.2869262695313 407.1361694335938 -360.7534790039063 407.5335998535156 -359.67041015625 407.5251159667969 C -355.5140380859375 407.4926147460938 -351.357177734375 407.5125122070313 -347.2005615234375 407.5118713378906 C -345.2213745117188 407.5114135742188 -345.0903930664063 407.3756408691406 -344.9418334960938 405.4033203125 C -344.5753173828125 400.5374450683594 -344.1943359375 395.6726989746094 -343.8241577148438 390.8073120117188 C -343.6455688476563 388.4588317871094 -343.4779663085938 386.1094970703125 -343.30078125 383.6966857910156 Z M -349.2772827148438 381.6348571777344 C -349.0592651367188 379.9205627441406 -349.3267211914063 379.6076049804688 -350.9688720703125 379.6034851074219 C -352.4498901367188 379.5998229980469 -353.930908203125 379.6002807617188 -355.4116821289063 379.6053161621094 C -357.037353515625 379.6107788085938 -357.309814453125 379.9402465820313 -357.0726318359375 381.6348571777344 L -349.2772827148438 381.6348571777344 Z"
+              ></path>
+            </svg>
+            <!-- <img class="icon" src="./../../assets/img/icons/panier.svg" alt="user_icon" /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="checkout">
+    <div class="total">
+      <h6 class="title" translate>basket.total</h6>
+      <div class="subtotal">
+        <div class="subtotal1">
+          <span translate>basket.total </span> <span class="devic">{{ formatPrice(cartTotal | currency: 'EUR') }}</span>
+        </div>
+        <div class="subtotal2"><span translate>basket.delivery </span> <span class="devic"> &euro; 0</span></div>
+        <hr />
+        <div class="subtotal1">
+          <span translate>basket.net_to_pay </span>
+          <span class="devic">{{ formatPrice(cartTotal | currency: 'EUR') }}</span>
+        </div>
+      </div>
+      <div class="checkouBtn"><button routerLink="/checkout" translate>basket.checkout</button></div>
+      <!-- <div style="float: right; margin-top: -37px; position: relative; bottom: -40px; right: -35px">
+        <img src="./../../../assets/img/icons/secure-payment.svg" alt="secure" style="width: 35px; height: 35px" />
+      </div> -->
+    </div>
+    <div class="payment-method">
+      <div class="title"><span translate>basket.accept</span></div>
+      <div class="payment">
+        <div class="img-payment">
+          <img id="Rectangle_199" src="./../../../assets/img/icons/Icon awesome-cc-visa.png" />
+          <img id="Rectangle_199" src="./../../../assets/img/icons/Icon awesome-cc-mastercard.png" />
+          <img id="Rectangle_199" src="./../../../assets/img/icons/Icon ionic-md-cash.png" />
+          <img id="Rectangle_199" src="./../../../assets/img/icons/Icon awesome-cc-paypal.png" />
+        </div>
+
+        <div class="coupn">
+          <div><a class="cpn" href="#">Got a coupon?</a></div>
+          <div><a class="cpn" href="#">Use it in next screen</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5"><h1 translate>basket.followed_product</h1></div>
+
+      <div class="col-12">
+        <div class="row mt-3">
+          <div class="col-md-3 mb-5" *ngFor="let product of bestSelling; let i = index">
+            <div class="card card-product-hover">
+              <img src="{{ product.images[0].file }}" height="300" alt="" />
+
+              <div class="card-product-hover-icons">
+                <a (click)="addToCart(product.id)"
+                  ><img src="./../../../../assets/img/hover-icon/icon cart.png" width="25" height="25" alt=""
+                /></a>
+                <a (click)="AddWishlist(product.id)" class="mt-2"
+                  ><img src="./../../../../assets/img/hover-icon/Heart.png" width="25" height="25" alt=""
+                /></a>
+                <a class="price">{{ formatPrice(product.price | currency: 'EUR') }}</a>
+                <a class="details" (click)="redirectProduct(product.id, i)"
+                  ><img src="./../../../../assets/img/hover-icon/Plus.png" width="35" height="35" alt=""
+                /></a>
+              </div>
+              <div class="card-product-hover-details">
+                <h3 class="card-product-hover-title" *ngIf="product.name.length > 17">
+                  {{ product.name.slice(0, 15) }}...
+                </h3>
+                <h3 class="card-product-hover-title" *ngIf="product.name.length <= 17">{{ product.name }}</h3>
+                <span class="card-product-hover-price">Legacy Foundation Tee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <div class="followed" *ngIf="cartData.data[0].numInCart !== 0">
+  <div class="followed-title"><h3 translate>basket.followed_product</h3></div>
+  <div class="home-main">
+    <div class="home-product" *ngFor="let product of bestSelling; let i = index">
+      <img routerLink="/product-detail/{{ product.id }}/{{ i }}/" src="{{ product.images[0].file }}" alt="" />
+      <div class="home-product-info">
+        <div class="description">
+          <span>{{ product.description.slice(0, 17) }}...</span>
+        </div>
+        <div class="price">
+          <span>{{ formatPrice(product.price | currency: 'EUR') }}</span>
+        </div>
+        <div class="addCart">
+          <button (click)="addToCart(product.id)" translate>basket.add_cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="followed" *ngIf="cartData.data[0].numInCart !== 0">
+  <div class="followed-title"><h3 translate>basket.similar_product</h3></div>
+  <div class="home-main">
+    <div class="home-product" *ngFor="let product of bestSelling; let i = index">
+      <img routerLink="/product-detail/{{ product.id }}/{{ i }}/" src="{{ product.images[0].file }}" alt="" />
+      <div class="home-product-info">
+        <div class="description">
+          <span>{{ product.description.slice(0, 17) }}...</span>
+        </div>
+        <div class="price">
+          <span>{{ formatPrice(product.price | currency: 'EUR') }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<section class="">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5"><h1 translate>basket.similar_product</h1></div>
+
+      <div class="col-12">
+        <div class="row mt-3">
+          <div class="col-md-3 mb-5" *ngFor="let product of bestSelling; let i = index">
+            <div class="card card-product-hover">
+              <img src="{{ product.images[0].file }}" height="300" alt="" />
+
+              <div class="card-product-hover-icons">
+                <a (click)="addToCart(product.id)"
+                  ><img src="./../../../../assets/img/hover-icon/icon cart.png" width="25" height="25" alt=""
+                /></a>
+                <a (click)="AddWishlist(product.id)" class="mt-2"
+                  ><img src="./../../../../assets/img/hover-icon/Heart.png" width="25" height="25" alt=""
+                /></a>
+                <a class="price">{{ formatPrice(product.price | currency: 'EUR') }}</a>
+                <a class="details" (click)="redirectProduct(product.id, i)"
+                  ><img src="./../../../../assets/img/hover-icon/Plus.png" width="35" height="35" alt=""
+                /></a>
+              </div>
+              <div class="card-product-hover-details">
+                <h3 class="card-product-hover-title" *ngIf="product.name.length > 17">
+                  {{ product.name.slice(0, 15) }}...
+                </h3>
+                <h3 class="card-product-hover-title" *ngIf="product.name.length <= 17">{{ product.name }}</h3>
+                <span class="card-product-hover-price">{{ product.description.slice(0, 30) }}...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<swal
+  #effacerSwal
+  title="Deletion"
+  text="Are you sure ?  "
+  type="question"
+  confirmButtonText="Yes"
+  cancelButtonText="No"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="cartService.DeleteProductFromCart(idProduct)"
+></swal>
+
+<app-footer></app-footer>

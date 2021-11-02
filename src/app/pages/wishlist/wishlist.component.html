@@ -1,0 +1,94 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+
+<div class="container">
+  <div class="text-center" *ngIf="wishlists.length === 0">
+    <h4><span translate>wishlist.no_list</span></h4>
+    <button routerLink="/" class="wishlist-btn"><span translate>wishlist.back_button</span></button>
+  </div>
+
+  <app-breadcrumb [home]="home" [name]="categoryName"></app-breadcrumb>
+
+  <div class="row" *ngIf="wishlists.length > 0">
+    <div class="col-4">
+      <h2 translate>product.products</h2>
+    </div>
+
+    <div class="col-3">
+      <div>
+        <h2 translate>wishlist.unit_price</h2>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <h2 translate>wishlist.stock_status</h2>
+    </div>
+  </div>
+
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div class="row" *ngFor="let wishlist of wishlists; let i = index">
+    <div class="col-4 wishlist-data d-flex justify-content-between align-items-center">
+      <div (click)="removeWishlist(wishlist.item)">
+        <img
+          class="delete"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="DELETE"
+          src="./../../../assets/img/icons/waste.svg"
+          width="25"
+          height="25"
+          alt=""
+        />
+      </div>
+
+      <div>
+        <img src="{{ wishlist.product.images[0].file }}" width="100" height="100" alt="" />
+      </div>
+
+      <div style="position: relative; left: -15%">{{ wishlist.product.name.slice(0, 9) }}</div>
+    </div>
+
+    <div class="col-3 wishlist-data d-flex justify-content-between align-items-center">
+      <div>{{ formatPrice(wishlist.product.price | currency: 'EUR') }}</div>
+    </div>
+
+    <div class="col-5 wishlist-data d-flex justify-content-between align-items-center">
+      <div *ngIf="wishlist.product.quantity > 10"><span translate>wishlist.in_stock</span></div>
+      <div *ngIf="wishlist.product.quantity <= 10" class="text-danger"><span translate>wishlist.low_stock</span></div>
+
+      <div class="d-flex flex-column">
+        <!-- <span> date added </span> -->
+        <button
+          [disabled]="wishlist.product.quantity < 10"
+          class="wishlist-btn"
+          (click)="addToCart(wishlist)"
+          translate
+        >
+          wishlist.add_button
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIMILARY PRODUCTS -->
+<div class="container grid mt-5">
+  <h1 class="text-center p-5"><span translate>wishlist.similar_product</span></h1>
+  <div class="section wrapper">
+    <app-product [products]="similarProducts"> </app-product>
+  </div>
+</div>
+
+<swal
+  #effacerSwal
+  title="Deletion "
+  text="Are you sure ?  "
+  type="question"
+  confirmButtonText="Yes"
+  cancelButtonText="No"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  (confirm)="deleteProducts()"
+></swal>
+<app-footer></app-footer>

@@ -1,0 +1,42 @@
+<div class="reviews container">
+  <h1 align="center" translate>review.reviews</h1>
+  <hr />
+  <div class="row mt-1" *ngIf="reviews">
+    <div class="col-12 col-lg-3 container" id="review-stars">
+      <ul class="list-unstyled">
+        <li>
+          <app-review-stars [rating]="rating"></app-review-stars>
+        </li>
+        <li>{{ reviews.length }} <span translate>review.votes</span></li>
+        <li>0 <span translate>review.questions</span> / 0 <span translate>review.answers</span></li>
+      </ul>
+    </div>
+    <div class="col-12 col-lg-9 row">
+      <div class="col-12" id="review-stats">
+        <app-reviews-stats (btnAddReviewClick)="onReviewAdd()" [reviews]="reviews" [id]="id"></app-reviews-stats>
+      </div>
+      <div class="col-12">
+        <mat-tab-group class="col-12">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <span translate>review.reviews</span>
+            </ng-template>
+            <h3 align="center" class="mt-5" *ngIf="reviews.length === 0" translate>review.no_reviews</h3>
+            <app-review-item
+              *ngFor="let review of reviews"
+              (btnDeleteReviewClick)="onReviewDelete(review.id)"
+              (btnUpdateReviewClick)="onReviewEdit(review.id)"
+              [review]="review"
+            ></app-review-item>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <span translate>review.questions</span>
+            </ng-template>
+            <h3 align="center" class="mt-5" translate>review.no_questions</h3>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

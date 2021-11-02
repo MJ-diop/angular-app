@@ -1,0 +1,212 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<div class="example-card">
+  <div class="globe-image">
+    <div *ngIf="isConnection">
+      <img class="globe-login" src="./../../assets/img/globe.PNG" alt="globe" />
+    </div>
+    <div *ngIf="isInscription">
+      <img class="globe-register" src="./../../assets/img/globe.PNG" alt="globe" />
+    </div>
+  </div>
+  <div class="center-content">
+    <div class="title">
+      <h3 *ngIf="isConnection" translate>registration.login.title</h3>
+      <h3 *ngIf="isInscription" translate>registration.register.title</h3>
+    </div>
+    <span class="successMessage" *ngIf="successMessage">{{ successMessage }}</span>
+    <div class="button" *ngIf="!resendLink">
+      <button
+        class="connexionBtn"
+        (click)="connexion()"
+        [style.background-color]="isConnection ? '#f39200' : 'white'"
+        [style.color]="isConnection ? 'white' : '#29235c'"
+        translate
+      >
+        registration.login.sub_title</button
+      ><button
+        class="inscriptionBtn"
+        (click)="inscription()"
+        [style.background-color]="isInscription ? '#29235c' : 'white'"
+        translate
+      >
+        registration.register.sub_title
+      </button>
+    </div>
+    <form [formGroup]="loginForm" (submit)="login()" *ngIf="isConnection && !resendLink">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.login.email</mat-label>
+        <input type="email" matInput placeholder="Email" formControlName="email" required />
+        <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+          <span *ngIf="loginForm.controls.email.errors.required" translate>registration.errors.required_error</span>
+          <span *ngIf="loginForm.controls.email.errors.pattern" translate>registration.errors.invalid_error</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.login.password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+          <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+            <span *ngIf="loginForm.controls.password.errors.required" translate
+              >registration.errors.required_error</span
+            >
+            <span *ngIf="loginForm.controls.password.errors.minlength" translate
+              >registration.errors.password_error</span
+            >
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary"><span translate>registration.login.connexion</span></button>
+      <span class="forgotPw"><a routerLink="/user/reset-password" translate>registration.login.reset_password</a></span>
+      <h3 class="social-title" translate>registration.login.connect_with</h3>
+      <div class="social-network">
+        <ul>
+          <li>
+            <a (click)="signInWithFB()">
+              <img class="globe" src="./../../assets/img/facebook-logo.jpg" alt="user_icon" />
+            </a>
+          </li>
+          <li>
+            <a (click)="loginWithGoogle()">
+              <img class="globe" src="./../../assets/img/courriel.png" alt="user_icon" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </form>
+    <form [formGroup]="registerForm" (submit)="register()" *ngIf="isInscription && !resendLink">
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.username</mat-label>
+        <input type="text" matInput placeholder="Username" formControlName="username" required />
+        <mat-error *ngIf="registerForm.controls.username.touched && registerForm.controls.username.invalid">
+          <span *ngIf="registerForm.controls.username.errors.required" translate
+            >registration.errors.required_error</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.email</mat-label>
+        <input type="email" matInput placeholder="Email" formControlName="email" required />
+        <mat-error *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+          <span *ngIf="registerForm.controls.email.errors.required" translate>registration.errors.required_error</span>
+          <span *ngIf="registerForm.controls.email.errors.pattern" translate>registration.errors.invalid_error</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.city</mat-label>
+        <input type="text" matInput placeholder="state" formControlName="state" required />
+        <mat-error *ngIf="registerForm.controls.state.touched && registerForm.controls.state.invalid">
+          <span *ngIf="registerForm.controls.state.errors.required" translate>registration.errors.required_error</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.zipcode</mat-label>
+        <input type="text" matInput placeholder="zipcode" formControlName="zipcode" required />
+        <mat-error *ngIf="registerForm.controls.zipcode.touched && registerForm.controls.zipcode.invalid">
+          <span *ngIf="registerForm.controls.zipcode.errors.required" translate
+            >registration.errors.required_error</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.country</mat-label>
+        <input type="text" matInput placeholder="country" formControlName="country" required />
+        <mat-error *ngIf="registerForm.controls.country.touched && registerForm.controls.country.invalid">
+          <span *ngIf="registerForm.controls.country.errors.required" translate
+            >registration.errors.required_error</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.street</mat-label>
+        <input type="text" matInput placeholder="street" formControlName="street" required />
+        <mat-error *ngIf="registerForm.controls.street.touched && registerForm.controls.street.invalid">
+          <span *ngIf="registerForm.controls.street.errors.required" translate>registration.errors.required_error</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.type_user</mat-label>
+        <select matNativeControl formControlName="typeUser" required>
+          <option *ngFor="let user of listType" [value]="user">
+            {{ user }}
+          </option>
+        </select>
+        <mat-error *ngIf="registerForm.controls.typeUser.touched && registerForm.controls.typeUser.invalid">
+          <span *ngIf="registerForm.controls.typeUser.errors.required" translate
+            >registration.errors.required_error</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.sexe</mat-label>
+        <select matNativeControl formControlName="gender" required>
+          <option *ngFor="let gender of listGender" [value]="gender">
+            {{ gender }}
+          </option>
+        </select>
+        <mat-error *ngIf="registerForm.controls.gender.touched && registerForm.controls.gender.invalid">
+          <span *ngIf="registerForm.controls.gender.errors.required" translate>registration.errors.required_error</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.password</mat-label>
+        <input type="password" matInput placeholder="Password" formControlName="password" />
+        <mat-error *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+          <mat-error *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+            <span *ngIf="registerForm.controls.password.errors.required" translate
+              >registration.errors.required_error</span
+            >
+            <span *ngIf="registerForm.controls.password.errors.minlength" translate
+              >registration.errors.password_error</span
+            >
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label translate>registration.register.confirm_password</mat-label>
+        <input type="password" matInput placeholder="Confirm your password" formControlName="password2" />
+        <mat-error *ngIf="registerForm.controls.password2.touched && registerForm.controls.password2.invalid">
+          <span *ngIf="registerForm.controls.password2.errors.required" translate
+            >registration.errors.required_error</span
+          >
+          <span *ngIf="registerForm.controls.password2.errors.mustMatch" translate
+            >registration.errors.match_password</span
+          >
+        </mat-error>
+      </mat-form-field>
+
+      <div class="d-flex">
+        <mat-checkbox
+          formControlName="checked"
+          class="example-full-width"
+          id="example-checkbox"
+          class="example-margin"
+          [(indeterminate)]="indeterminate"
+          [labelPosition]="labelPosition"
+          [disabled]="disabled"
+        >
+        </mat-checkbox>
+        <div class="conditions" (click)="openDialog()" translate>registration.register.conditions</div>
+      </div>
+      <button mat-raised-button color="primary"><span translate>registration.register.registration</span></button>
+    </form>
+
+    <div class="errorMessage">
+      <span class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</span>
+    </div>
+    <div *ngIf="resendLink">
+      <button mat-raised-button color="primary" (click)="resend()" translate>registration.register.resend</button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

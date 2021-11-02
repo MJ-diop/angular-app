@@ -1,0 +1,5 @@
+<div class="rating-wrap">
+  <span *ngFor="let rat of getCheckedRatingArray(rating)" class="fa fa-star checked"> </span>
+  <span class="fa fa-star" *ngFor="let rat of getRatingArray(rating)"></span>
+  <div class="label-rating">({{ parseRating(rating) }})</div>
+</div>

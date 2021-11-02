@@ -1,0 +1,77 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<form [formGroup]="createStore" (ngSubmit)="onSubmit()" class="container col-sm-10 col-md-8 col-lg-6">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <label for="store-name"><span translate>store.name</span></label>
+        <input type="text" name="shop-name" id="" formControlName="name" class="form-control" />
+
+        <!-- <div *ngIf="submited && f.name.errors" class="text-danger">
+          <div *ngIf="f.name.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      </div>
+
+      <div class="col-6">
+        <label for="region"><span>Region</span></label>
+        <!-- <input type="text" name="region" formControlName="region" class="form-control" /> -->
+        <select class="form-control" name="region" formControlName="region">
+          <option value="Afrique"><span translate>region.africa</span></option>
+          <option value="Amerique"><span translate>region.america</span></option>
+          <option value="Europe"><span translate>region.europe</span></option>
+          <option value="Asie"><span translate>region.asia</span></option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label for="state"><span translate>registration.register.city</span></label>
+        <input type="text" name="state" id="" formControlName="state" class="form-control" />
+      </div>
+
+      <div class="col-6">
+        <label for="zipcode"><span translate>registration.register.zipcode</span></label>
+        <input type="text" name="zipcode" id="" formControlName="zipcode" class="form-control" />
+      </div>
+
+      <div class="col-6">
+        <label for="country"><span translate>registration.register.country</span></label>
+        <input type="text" name="country" formControlName="country" class="form-control" />
+      </div>
+
+      <div class="col-6">
+        <label for="street"><span translate>registration.register.street</span></label>
+        <input type="text" name="street" id="" formControlName="street" class="form-control" />
+      </div>
+      <!-- <label for="store_address"><span translate>store.address</span></label>
+        <input type="text" name="store_address" formControlName="store_address" class="form-control" />-->
+
+      <!-- <div *ngIf="submited && f.store_address.errors" class="text-danger">
+          <div *ngIf="f.store_adress.errors.required" class="text-danger">donnees invalid !</div>
+        </div> -->
+      <div class="form-check mt-4 ml-3">
+        <input type="checkbox" class="form-check-input" checked />
+        <!-- (change)="checkCheckBoxvalue($event)"
+          #ch
+          (click)="checkCheckBoxvalue(ch)" -->
+        <label for="active" class="form-check-label"><span translate>store.is_active</span></label>
+      </div>
+      <div class="form-check mt-4 ml-3">
+        <input
+          formControlName="image"
+          class="form-control"
+          id="file"
+          type="file"
+          (change)="handleFileInput($event)"
+          accept="image/jpg,image/jpeg,image/png,application/pdf"
+          maxFileSize="1000000"
+          multiple
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" class="btn-block mt-3">
+    <span translate>store.create_button</span>
+  </button>
+</form>
+<app-footer></app-footer>

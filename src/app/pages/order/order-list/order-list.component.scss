@@ -1,0 +1,57 @@
+* {
+  font-family: 'Raleway' !important;
+}
+
+h1 {
+  color: #29235c;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+button {
+  font-size: larger;
+}
+#order-menu {
+  svg,
+  img {
+    width: 1em;
+    margin-right: 0.3em;
+    position: relative;
+    bottom: 5px;
+    color: #000;
+  }
+  background-color: #f8f8f8;
+  padding: 2em;
+  li {
+    font-size: large;
+    color: #adadad;
+    border-top: 1px solid #29235c;
+    padding: 0.5em 1em;
+    cursor: pointer;
+
+    &:hover {
+      color: #29235c;
+    }
+  }
+
+  .disconecte:hover {
+    color: #df2f2f;
+  }
+}
+
+.view-more {
+  cursor: pointer;
+  animation: bounce 0.7s ease infinite;
+}
+
+@keyframes bounce {
+  from {
+    top: 20px;
+  }
+  50% {
+    top: 10px;
+  }
+  to {
+    top: 20px;
+  }
+}

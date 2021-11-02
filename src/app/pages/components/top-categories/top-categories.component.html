@@ -1,0 +1,60 @@
+<section class="pt-5">
+  <div class="container">
+    <div class="col-12 text-center mt-5 mb-5 text-regions">
+      <h2><span translate> home.top_categories</span></h2>
+      <h3 class="mb-3"><span translate> home.top_categories_desc</span></h3>
+    </div>
+
+    <main>
+      <section
+        class="daniel"
+        style="background-image: url('{{ category0.image }}');background-size: cover;
+      background-position: center;"
+      >
+        <div>
+          <h1 routerLink="/categories-detail/{{ category0.id }}">{{ category0.name }}</h1>
+        </div>
+      </section>
+
+      <section
+        class="jonathan"
+        style="background-image: url('{{ category1.image }}');background-size: cover;
+      background-position: center;"
+      >
+        <div>
+          <h1 routerLink="/categories-detail/{{ category1.id }}">{{ category1.name }}</h1>
+        </div>
+      </section>
+
+      <section
+        class="kira"
+        style="background-image: url('{{ category2.image }}');background-size: cover;
+      background-position: center;"
+      >
+        <div>
+          <h1 routerLink="/categories-detail/{{ category2.id }}">{{ category2.name }}</h1>
+        </div>
+      </section>
+
+      <section
+        class="jeanette"
+        style="background-image: url('{{ category3.image }}');background-size: cover;
+      background-position: center;"
+      >
+        <div>
+          <h1 routerLink="/categories-detail/{{ category3.id }}">{{ category3.name }}</h1>
+        </div>
+      </section>
+
+      <section
+        class="patrick"
+        style="background-image: url('{{ category4.image }}');background-size: cover;
+      background-position: center;"
+      >
+        <div>
+          <h1 routerLink="/categories-detail/{{ category4.id }}">{{ category4.name }}</h1>
+        </div>
+      </section>
+    </main>
+  </div>
+</section>

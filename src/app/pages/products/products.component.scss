@@ -1,0 +1,42 @@
+.container {
+  color: #101010;
+}
+
+.button:hover,
+button:hover {
+  opacity: 0.8;
+  font-weight: normal;
+}
+
+.button:disabled,
+button:disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.store_name {
+  padding: 5px;
+}
+.up {
+  width: 40%;
+}
+
+.input-group-append {
+  position: relative;
+  right: -87%;
+  top: -42px;
+}
+
+.product {
+  // border: 1px solid #fff;
+  margin: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+
+  &:hover {
+    box-shadow: 20px 20px 60px #cccccc, -20px -20px 60px #ffffff;
+    transform: translateY(-5px);
+    transition: 0.2s;
+  }
+}

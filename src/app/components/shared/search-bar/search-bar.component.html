@@ -1,0 +1,30 @@
+<div class="row height d-flex align-items-end mb-3">
+  <div class="col-md-8 col-xs-6 col-lg-6 col-sm-10">
+    <div class="search">
+      <!-- <i class="fa fa-search search-icon"></i> -->
+      <input
+        type="text"
+        class="form-control me-2"
+        placeholder="{{ 'Search a product' || keyWord }}"
+        [formControl]="queryField"
+        [(ngModel)]="keyWord"
+        (keyup.enter)="enterProduct($event)"
+      />
+      <button class="btn btn-primary" (click)="submit()" translate>home.search</button>
+    </div>
+  </div>
+</div>
+<!-- <section class="row height d-flex justify-content-end align-items-end result">
+  <div class="col-md-8 col-xs-6 col-lg-6 col-sm-10 result-list" *ngIf="results.length > 0">
+    <ul class="search">
+      <li *ngFor="let result of results; let i = index" class="filter-select-list">
+        <div (click)="selectedProduct(result.name)">
+          <img src="{{ result.images[0].file }}" alt="" width="50" height="50" />
+          <p class="artist-name">
+            {{ result.name }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section> -->

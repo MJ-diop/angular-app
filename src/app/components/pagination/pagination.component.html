@@ -1,0 +1,7 @@
+<div class="d-flex justify-content-center">
+  <div
+    class="page-item active"
+    *ngFor="let item of products | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength }"
+  ></div>
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

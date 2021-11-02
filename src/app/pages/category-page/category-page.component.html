@@ -1,0 +1,52 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<section class="diff-ctg mt-5">
+  <div class="container">
+    <div class="content text-center">
+      <h1>
+        <b><span translate>category.diff_categorie</span></b>
+      </h1>
+      <p class="desc">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, dicta eaque necessitatibus, nemo nulla,
+        aspernatur sit suscipit cum quas rem doloribus! Mollitia quibusdam necessitatibus sapiente quae, quos nobis
+        beatae obcaecati.
+      </p>
+    </div>
+
+    <div class="ctg-img mt-5">
+      <div class="img-1" *ngIf="category1">
+        <img src="../../../assets/img/Products/10.png" alt="" />
+        <h2 class="ctg-name">{{ category1 }}</h2>
+      </div>
+      <div class="img-2" *ngIf="category2">
+        <img src="../../../assets/img/Products/11.png" alt="" />
+        <h2 class="ctg-name">{{ category2 }}</h2>
+      </div>
+      <div class="img-3" *ngIf="category3">
+        <img src="../../../assets/img/Products/12.png" alt="" />
+        <h2 class="ctg-name">{{ category3 }}</h2>
+      </div>
+    </div>
+  </div>
+</section>
+<hr />
+
+<section class="autres-ctg mt-5">
+  <div class="container text-center">
+    <h1>
+      <b><span translate>category.autre_categorie</span></b>
+    </h1>
+    <div class="divider mb-4 mt-3"></div>
+
+    <div class="all-ctg">
+      <div class="section wrapper">
+        <div class="box span_1_of_4" *ngFor="let category of categories; let i = index">
+          <img src="{{ category.image }}" alt="" width="250" />
+          <h2 routerLink="/categories-detail/{{ category.id }}">{{ category.name }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

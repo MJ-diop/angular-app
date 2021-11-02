@@ -1,0 +1,23 @@
+.btn-add {
+  padding: 8px 16px;
+  color: white;
+  background-color: #f88811;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #ef7c02;
+  }
+}
+
+.btn-remove {
+  padding: 8px 16px;
+  color: white;
+  background-color: #e92c2c;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #da1818;
+  }
+}

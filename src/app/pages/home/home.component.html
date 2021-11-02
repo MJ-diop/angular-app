@@ -1,0 +1,27 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<app-headers></app-headers>
+
+<app-regions></app-regions>
+
+<div class="container">
+  <app-best-deals title="Best deals" [products]="bestDeals" carouselId="carouselExampleIndicators3"></app-best-deals>
+
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+</div>
+
+<app-pub-section></app-pub-section>
+
+<app-top-categories></app-top-categories>
+
+<div class="container">
+  <app-best-deals
+    title="Most popular"
+    [products]="mostPopular"
+    carouselId="carouselExampleIndicators4"
+  ></app-best-deals>
+
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+</div>
+<app-footer></app-footer>

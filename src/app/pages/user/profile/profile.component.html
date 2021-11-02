@@ -1,0 +1,111 @@
+<app-nav-logo></app-nav-logo>
+<app-buyer-navbar></app-buyer-navbar>
+<app-floating-share-button></app-floating-share-button>
+<div class="container">
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-3 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="./../../assets/img/anonym.jpg" alt="Admin" class="rounded-circle" width="150" />
+              <div class="mt-3">
+                <h4>{{ user.username }}</h4>
+                <p class="text-secondary mb-1">{{ user.account_type }}</p>
+                <p class="text-muted font-size-sm" *ngIf="user.address !== null">
+                  {{ user.address.street }}, {{ user.address.state }}
+                </p>
+                <button class="btn btn-primary" routerLink="/update" translate>profile.edit_button</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer" *ngIf="is_seller">
+            <p><span translate>profile.balance</span>: {{ formatPrice(balance | currency: 'EUR') }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0"><span translate>profile.username</span></h4>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.username }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0" translate>profile.email</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.email }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0" translate>profile.type_user</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.account_type }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h4 class="mb-0" translate>profile.sexe</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ user.gender }}</div>
+            </div>
+            <hr />
+            <div class="row" *ngIf="user.address !== null">
+              <div class="col-sm-3">
+                <h4 class="mb-0" translate>profile.address</h4>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ user.address.street }}, {{ user.address.state }},{{ user.address.country }}
+              </div>
+              <hr />
+            </div>
+            <!-- <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-info" routerLink="/update" translate>profile.edit_button</a>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 dash">
+            <button mat-raised-button color="primary" routerLink="/orders" *ngIf="!is_seller">
+              <span translate>profile.orders_button</span>
+            </button>
+            <button mat-raised-button color="primary" routerLink="/orders" *ngIf="is_seller">
+              <span translate>profile.orders_button</span>
+            </button>
+          </div>
+          <div class="col-md-7 dash">
+            <button mat-raised-button color="primary" routerLink="/wishlist" *ngIf="!is_seller">
+              <span translate>wishlist.title</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 dash" *ngIf="is_seller">
+        <!-- <div class="row"> -->
+        <button mat-raised-button color="primary" routerLink="/list-store">
+          <span translate>profile.store_button</span>
+        </button>
+        <button mat-raised-button color="primary" routerLink="/updatestore/{{ store.id }}" *ngIf="has_store">
+          Store
+        </button>
+
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+        <button mat-raised-button color="primary" routerLink="/products">
+          <span translate>profile.products_button</span>
+        </button>
+
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

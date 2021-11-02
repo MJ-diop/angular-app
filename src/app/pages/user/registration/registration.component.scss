@@ -1,0 +1,180 @@
+.example-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 25px;
+  margin-top: 1.5%;
+  flex-wrap: nowrap;
+}
+
+.globe-image {
+  margin-right: 0%;
+  padding: 20px;
+  margin-top: 0%;
+  background-size: cover;
+}
+
+.globe-login {
+  height: 60vh;
+  width: 60vh;
+  border-bottom-left-radius: 75px;
+  border-top-left-radius: 75px;
+}
+
+.globe-login {
+  height: 60vh;
+  width: 60vh;
+  border-bottom-left-radius: 75px;
+  border-top-left-radius: 75px;
+}
+
+.center-content {
+  width: 300px;
+}
+
+.example-full-width {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.mat-raised-button {
+  margin-top: 10px;
+  width: 100%;
+  color: white;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.conditions {
+  margin-left: 0px;
+  font-size: 0.7rem;
+  color: #29235c;
+  cursor: pointer;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-right: 0px;
+}
+
+.button button {
+  width: 50%;
+  border: none;
+  height: 40px;
+  border: 0.5px solid rgb(117, 117, 117);
+}
+
+.inscriptionBtn {
+  color: #f39200;
+}
+
+.title {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 8px;
+}
+
+.title h3 {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  color: #29235c;
+}
+
+.forgotPw {
+  font-size: 0.8rem;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  color: #29235c;
+  margin-top: 2px;
+}
+.forgotPw a {
+  color: #29235c;
+  font-weight: bold;
+}
+
+#example-checkbox {
+  font-size: 1px;
+  margin-left: 0px;
+}
+
+.successMessage {
+  color: green;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+a {
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+.social-network {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #29235c;
+  margin-top: 2px;
+}
+
+.social-network ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.social-network img {
+  width: 30px;
+  height: 30px;
+  margin-right: 1rem;
+}
+.social-title {
+  font-size: 1rem;
+  font-weight: bolder;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.errorMessage {
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.errorMessage span {
+  color: rgb(165, 27, 27);
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 900px) {
+  .globe-image {
+    display: none;
+  }
+
+  .title {
+    margin-top: 15%;
+  }
+}

@@ -1,0 +1,79 @@
+.example-card {
+  max-width: 800px;
+  margin-top: 10px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.center-content {
+  margin-top: -135px;
+  margin-bottom: 15px;
+  text-align: -webkit-center;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  margin-top: 10px;
+  width: 100%;
+}
+.mat-raised-button {
+  margin-top: 10px;
+  width: 100%;
+  color: white;
+  height: 40px;
+  border-radius: 10px;
+}
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+.conditions {
+  margin-left: 0px;
+  font-size: 0.7rem;
+  color: #29235c;
+}
+
+:host ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+  color: #ffff;
+  background-color: #f39200;
+  border: 1px solid black;
+}
+
+#example-checkbox {
+  font-size: 1px;
+  margin-left: 0px;
+}
+
+.errorMessage {
+  color: red;
+}
+.successMessage {
+  color: green;
+}
+a {
+  text-decoration: none;
+  font-size: 0.7rem;
+}
+.social-network {
+  padding: 5px;
+  margin-top: 15px;
+}
+.social-network h4 {
+  font-weight: bold;
+}

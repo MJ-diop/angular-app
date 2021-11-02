@@ -1,0 +1,44 @@
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-dialog-actions>
+<mat-dialog-content>
+  <div class="content">
+    <form [formGroup]="createReviewForm" style="width: 100%">
+      <div class="form-group">
+        <label for="title"><span translate>review.title</span></label>
+        <input type="text" class="form-control" formControlName="title" required />
+      </div>
+
+      <div class="form-group">
+        <label for="comment"><span translate>review.comment</span></label>
+        <textarea class="form-control" rows="3" formControlName="comment" placeholder="Comment"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="rating"><span translate>review.rate</span></label>
+        <select class="form-control" formControlName="rating" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <button
+        (click)="onSubmit()"
+        [disabled]="createReviewForm.invalid"
+        mat-raised-button
+        color="accent"
+        class="btn-block"
+        mat-button
+        mat-dialog-close
+        *ngIf="currentUser"
+      >
+        <span translate>review.commentButton</span>
+      </button>
+    </form>
+  </div>
+</mat-dialog-content>

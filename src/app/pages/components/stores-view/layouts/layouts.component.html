@@ -1,0 +1,74 @@
+<section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h1>{{ title }}</h1>
+      </div>
+
+      <div class="col-12">
+        <div id="{{ carouselId }}" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row mt-3">
+                <div class="col-md-3 mb-5" *ngFor="let product of stores.slice(0, 8); let i = index">
+                  <div class="card card-product-hover">
+                    <img src="{{ product.image }}" height="300" alt="" />
+
+                    <div class="card-product-hover-details">
+                      <h3
+                        routerLink="/store-products/{{ product.id }}"
+                        class="card-product-hover-title"
+                        *ngIf="product.name.length > 17"
+                      >
+                        {{ product.name.slice(0, 15) }}...
+                      </h3>
+                      <h3
+                        routerLink="/store-products/{{ product.id }}"
+                        class="card-product-hover-title"
+                        *ngIf="product.name.length <= 17"
+                      >
+                        {{ product.name }}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row mt-3">
+                <div class="col-md-3 mb-5" *ngFor="let product of stores.slice(9, 17); let i = index">
+                  <div class="card card-product-hover">
+                    <img src="{{ product.image }}" height="300" alt="" />
+
+                    <div class="card-product-hover-details">
+                      <h3 class="card-product-hover-title" *ngIf="product.name.length > 17">
+                        {{ product.name.slice(0, 15) }}...
+                      </h3>
+                      <h3 class="card-product-hover-title" *ngIf="product.name.length <= 17">{{ product.name }}</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagination">
+            <a class="carousel-control-prev" href="#{{ carouselId }}" role="button" data-slide="prev">
+              <div class="prev-icon">
+                <img src="./../../../../assets/img/Dev Assets/Pagination (1).png" width="40" height="40" alt="" />
+              </div>
+              <span class="sr-only"><span translate>home.previous</span></span>
+            </a>
+            <a class="carousel-control-next" href="#{{ carouselId }}" role="button" data-slide="next">
+              <div class="next-icon">
+                <img src="./../../../../assets/img/Dev Assets/Pagination (2).png" width="40" height="40" alt="" />
+              </div>
+              <span class="sr-only"><span translate>home.next</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
